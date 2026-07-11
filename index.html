@@ -7,13 +7,13 @@
 <meta name="description" content="Farzad Roozbahani is an SEO specialist and WordPress developer based in Tehran, working with clients including RugMaster (Australia) on technical SEO, keyword strategy, and WordPress development.">
 <meta name="theme-color" content="#070A12">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://farzadroozbahani.ir/">
+<link rel="canonical" href="https://feris.ir/">
 
 <meta property="og:type" content="profile">
-<meta property="og:title" content="Farzad Roozbahani — SEO Specialist & WordPress Developer">
+<meta property="og:title" content="Farzad Roozbahani — SEO Specialist & Developer">
 <meta property="og:description" content="SEO strategy, technical audits and WordPress development for real businesses. Based in Tehran, working with clients worldwide.">
-<meta property="og:image" content="assets/farzad.png">
-<meta property="og:url" content="https://farzadroozbahani.ir/">
+<meta property="og:image" content="https://feris.ir/assets/farzad.png">
+<meta property="og:url" content="https://feris.ir/">
 <meta property="og:locale" content="en_US">
 <meta name="twitter:card" content="summary">
 
@@ -21,29 +21,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Farzad Roozbahani",
-  "jobTitle": "SEO Specialist & WordPress Developer",
-  "url": "https://farzadroozbahani.ir",
-  "image": "https://farzadroozbahani.ir/assets/farzad.png",
-  "email": "mailto:farzad.roozbahanii@gmail.com",
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "Tehran",
-    "addressRegion": "Seyyed Khandan",
-    "addressCountry": "IR"
-  },
-  "worksFor": { "@type": "Organization", "name": "RugMaster Pty Ltd" },
-  "alumniOf": { "@type": "EducationalOrganization", "name": "Avini High School" },
-  "knowsLanguage": ["en", "fa"],
-  "knowsAbout": ["SEO", "Technical SEO", "WordPress Development", "Keyword Research", "On-page SEO"],
-  "sameAs": ["https://farzadroozbahani.ir"]
-}
-</script>
 
 <style>
   :root{
@@ -359,6 +336,76 @@
     return ICONS[key] || ICONS.default;
   }
 
+  function buildPersonSchema(sections, hero){
+    var SITE = 'https://feris.ir/';
+    var experiences = splitSubsections(sections.experience || '');
+    var currentJob = experiences.filter(function(e){ return /now|present/i.test(e.header); })[0] || experiences[0];
+    var org = '';
+    if (currentJob){
+      var jp = currentJob.header.split('|').map(function(s){ return s.trim(); });
+      org = jp[1] || '';
+    }
+
+    var eduItems = splitSubsections(sections.education || '');
+    var alumni = eduItems[0] ? eduItems[0].header.split('|')[0].trim() : '';
+
+    var knowsAbout = [];
+    splitSubsections(sections.skills || '').forEach(function(g){
+      g.body.split(',').map(function(s){ return s.trim(); }).filter(Boolean).forEach(function(s){
+        if (knowsAbout.indexOf(s) === -1) knowsAbout.push(s);
+      });
+    });
+
+    var contact = parseKeyValues(sections.contact || '');
+    var locRaw = contact.location || hero.location || '';
+    var locParts = locRaw.split(',').map(function(s){ return s.trim(); }).filter(Boolean);
+    var locality = locParts[0] || '';
+    var country = /iran/i.test(locParts[locParts.length - 1] || '') ? 'IR' : undefined;
+
+    var langCodeMap = { persian: 'fa', farsi: 'fa', english: 'en', arabic: 'ar' };
+    var knowsLanguage = [];
+    (sections.languages || '').split(/\r?\n/).forEach(function(line){
+      var m = line.match(/^(.+):\s*(.+)$/);
+      if (m){
+        var key = m[1].trim().toLowerCase();
+        knowsLanguage.push(langCodeMap[key] || m[1].trim());
+      }
+    });
+
+    var schema = {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": hero.name || '',
+      "jobTitle": hero.eyebrow || '',
+      "description": (sections.about || '').trim(),
+      "url": SITE,
+      "image": SITE + 'assets/farzad.png',
+      "email": hero.email ? ('mailto:' + hero.email) : undefined,
+      "address": locality ? {
+        "@type": "PostalAddress",
+        "addressLocality": locality,
+        "addressCountry": country
+      } : undefined,
+      "worksFor": org ? { "@type": "Organization", "name": org } : undefined,
+      "alumniOf": alumni ? { "@type": "EducationalOrganization", "name": alumni } : undefined,
+      "knowsLanguage": knowsLanguage.length ? knowsLanguage : undefined,
+      "knowsAbout": knowsAbout.length ? knowsAbout : undefined,
+      "sameAs": [SITE]
+    };
+    Object.keys(schema).forEach(function(k){ if (schema[k] === undefined) delete schema[k]; });
+    return schema;
+  }
+
+  function injectSchema(schemaObj){
+    var existing = document.getElementById('personSchema');
+    if (existing) existing.remove();
+    var s = document.createElement('script');
+    s.type = 'application/ld+json';
+    s.id = 'personSchema';
+    s.textContent = JSON.stringify(schemaObj, null, 2);
+    document.head.appendChild(s);
+  }
+
   function render(sections){
     // hero
     var hero = parseKeyValues(sections.hero || '');
@@ -464,6 +511,8 @@
     document.getElementById('footerText').textContent = '© ' + year + ' ' + (hero.name || '');
 
     document.getElementById('siteRoot').hidden = false;
+
+    injectSchema(buildPersonSchema(sections, hero));
   }
 
   fetch('content.md')
