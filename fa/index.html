@@ -14,12 +14,21 @@
 <link rel="sitemap" type="application/xml" href="/sitemap.xml">
 
 <meta property="og:type" content="website">
+<meta property="og:site_name" content="Farzad Roozbahani">
 <meta property="og:title" content="فرزاد روزبهانی | متخصص سئو و توسعه‌دهنده">
 <meta property="og:description" content="فرزاد روزبهانی متخصص سئو و توسعه‌دهنده‌ی وردپرس در تهران است که به کسب‌وکارهایی مثل رگ‌مستر در رشد از طریق سئوی فنی و استراتژی کلمات کلیدی کمک می‌کند.">
 <meta property="og:image" content="https://feris.ir/assets/farzad.png">
+<meta property="og:image:width" content="675">
+<meta property="og:image:height" content="1200">
+<meta property="og:image:alt" content="فرزاد روزبهانی | متخصص سئو و توسعه‌دهنده">
 <meta property="og:url" content="https://feris.ir/fa/">
 <meta property="og:locale" content="fa_IR">
-<meta name="twitter:card" content="summary">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="فرزاد روزبهانی | متخصص سئو و توسعه‌دهنده">
+<meta name="twitter:description" content="فرزاد روزبهانی متخصص سئو و توسعه‌دهنده‌ی وردپرس در تهران است که به کسب‌وکارهایی مثل رگ‌مستر در رشد از طریق سئوی فنی و استراتژی کلمات کلیدی کمک می‌کند.">
+<meta name="twitter:image" content="https://feris.ir/assets/farzad.png">
+<meta name="twitter:image:alt" content="فرزاد روزبهانی | متخصص سئو و توسعه‌دهنده">
 
 <link rel="icon" href="data:,">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -148,6 +157,8 @@ img{ max-width:100%; display:block; }
 
 .wrap{ max-width: 760px; margin: 0 auto; padding: 0 18px 90px; }
 .topbar{ position: sticky; top: 0; z-index: 40; display:flex; align-items:center; justify-content:space-between; gap:10px; padding: 16px 18px; max-width: 760px; margin: 0 auto; }
+@media (min-width: 900px){ .wrap, .topbar{ max-width: 900px; } }
+@media (min-width: 1200px){ .wrap, .topbar{ max-width: 1040px; } }
 .brand{ font-family: var(--font-display); font-weight: 700; font-size: 14.5px; letter-spacing: 0.02em; padding: 10px 22px; border-radius: 999px; }
 .topbar nav{ display:flex; gap:8px; }
 .topbar nav a{ font-family: var(--font-mono); font-size: 12px; letter-spacing:0.04em; padding: 9px 14px; border-radius: 999px; color: var(--text-muted); }
@@ -212,13 +223,20 @@ section{ margin-top: 46px; }
 footer{ text-align:center; padding: 30px 20px 10px; color: var(--text-faint); font-family: var(--font-mono); font-size: 11.5px; }
 
 /* ---- blog ---- */
-.post-card{ padding: 0 0 22px; margin-bottom: 14px; display:block; overflow:hidden; }
-.post-card .post-thumb{ width:100%; aspect-ratio: 1200/630; object-fit:cover; margin-bottom: 16px; }
-.post-card .post-date, .post-card h3, .post-card .excerpt, .post-card .readmore{ margin-inline: 22px; }
-.post-card .post-date{ font-family: var(--font-mono); font-size: 11.5px; color: var(--text-faint); letter-spacing:0.03em; }
-.post-card h3{ font-family: var(--font-display); font-weight: 700; font-size: 18px; margin-top: 8px; }
-.post-card .excerpt{ margin-top: 8px; color: var(--text-muted); font-size: 14px; line-height: 1.7; }
-.post-card .readmore{ margin-top: 12px; display:inline-block; font-family: var(--font-mono); font-size: 12px; color: var(--blob-cyan); }
+.post-list{ display:flex; flex-direction:column; }
+.post-row{ display:flex; gap:18px; align-items:flex-start; padding: 20px 4px; border-bottom: 1px solid rgba(255,255,255,0.10); }
+.post-list a.post-row:hover{ background: rgba(255,255,255,0.03); }
+.post-row:last-child{ border-bottom: none; }
+.post-row .post-thumb{ width: 128px; height: 128px; min-width: 128px; object-fit:cover; border-radius: 14px; border: 1px solid var(--glass-border); }
+.post-row .post-main{ min-width: 0; flex: 1; }
+.post-row .post-date{ font-family: var(--font-mono); font-size: 11.5px; color: var(--text-faint); letter-spacing:0.03em; }
+.post-row h3{ font-family: var(--font-display); font-weight: 700; font-size: 17px; margin-top: 6px; line-height: 1.4; }
+.post-row .excerpt{ margin-top: 6px; color: var(--text-muted); font-size: 13.5px; line-height: 1.65; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+@media (max-width: 480px){ .post-row .post-thumb{ width: 84px; height: 84px; min-width: 84px; border-radius: 10px; } .post-row h3{ font-size: 15px; } }
+
+.more-posts{ margin-top: 40px; padding-top: 22px; border-top: 1px solid var(--glass-border); }
+.more-posts h2{ font-family: var(--font-display); font-weight: 700; font-size: 18px; margin-bottom: 12px; }
+.more-posts .post-list{ margin-inline: -4px; }
 
 article.post{ padding: 28px; }
 article.post .post-date{ font-family: var(--font-mono); font-size: 12px; color: var(--text-faint); }

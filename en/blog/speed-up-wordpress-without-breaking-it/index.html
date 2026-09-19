@@ -14,12 +14,21 @@
 <link rel="sitemap" type="application/xml" href="/sitemap.xml">
 
 <meta property="og:type" content="website">
+<meta property="og:site_name" content="Farzad Roozbahani">
 <meta property="og:title" content="How to Speed Up a WordPress Site Without Breaking It">
 <meta property="og:description" content="The fastest way to make a WordPress site faster is also the fastest way to break it. Here&#x27;s the order that actually works.">
 <meta property="og:image" content="https://feris.ir/assets/blog/speed-up-wordpress-without-breaking-it.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="How to Speed Up a WordPress Site Without Breaking It">
 <meta property="og:url" content="https://feris.ir/en/blog/speed-up-wordpress-without-breaking-it/">
 <meta property="og:locale" content="en_US">
-<meta name="twitter:card" content="summary">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="How to Speed Up a WordPress Site Without Breaking It">
+<meta name="twitter:description" content="The fastest way to make a WordPress site faster is also the fastest way to break it. Here&#x27;s the order that actually works.">
+<meta name="twitter:image" content="https://feris.ir/assets/blog/speed-up-wordpress-without-breaking-it.jpg">
+<meta name="twitter:image:alt" content="How to Speed Up a WordPress Site Without Breaking It">
 
 <link rel="icon" href="data:,">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -114,6 +123,8 @@ img{ max-width:100%; display:block; }
 
 .wrap{ max-width: 760px; margin: 0 auto; padding: 0 18px 90px; }
 .topbar{ position: sticky; top: 0; z-index: 40; display:flex; align-items:center; justify-content:space-between; gap:10px; padding: 16px 18px; max-width: 760px; margin: 0 auto; }
+@media (min-width: 900px){ .wrap, .topbar{ max-width: 900px; } }
+@media (min-width: 1200px){ .wrap, .topbar{ max-width: 1040px; } }
 .brand{ font-family: var(--font-display); font-weight: 700; font-size: 14.5px; letter-spacing: 0.02em; padding: 10px 22px; border-radius: 999px; }
 .topbar nav{ display:flex; gap:8px; }
 .topbar nav a{ font-family: var(--font-mono); font-size: 12px; letter-spacing:0.04em; padding: 9px 14px; border-radius: 999px; color: var(--text-muted); }
@@ -178,13 +189,20 @@ section{ margin-top: 46px; }
 footer{ text-align:center; padding: 30px 20px 10px; color: var(--text-faint); font-family: var(--font-mono); font-size: 11.5px; }
 
 /* ---- blog ---- */
-.post-card{ padding: 0 0 22px; margin-bottom: 14px; display:block; overflow:hidden; }
-.post-card .post-thumb{ width:100%; aspect-ratio: 1200/630; object-fit:cover; margin-bottom: 16px; }
-.post-card .post-date, .post-card h3, .post-card .excerpt, .post-card .readmore{ margin-inline: 22px; }
-.post-card .post-date{ font-family: var(--font-mono); font-size: 11.5px; color: var(--text-faint); letter-spacing:0.03em; }
-.post-card h3{ font-family: var(--font-display); font-weight: 700; font-size: 18px; margin-top: 8px; }
-.post-card .excerpt{ margin-top: 8px; color: var(--text-muted); font-size: 14px; line-height: 1.7; }
-.post-card .readmore{ margin-top: 12px; display:inline-block; font-family: var(--font-mono); font-size: 12px; color: var(--blob-cyan); }
+.post-list{ display:flex; flex-direction:column; }
+.post-row{ display:flex; gap:18px; align-items:flex-start; padding: 20px 4px; border-bottom: 1px solid rgba(255,255,255,0.10); }
+.post-list a.post-row:hover{ background: rgba(255,255,255,0.03); }
+.post-row:last-child{ border-bottom: none; }
+.post-row .post-thumb{ width: 128px; height: 128px; min-width: 128px; object-fit:cover; border-radius: 14px; border: 1px solid var(--glass-border); }
+.post-row .post-main{ min-width: 0; flex: 1; }
+.post-row .post-date{ font-family: var(--font-mono); font-size: 11.5px; color: var(--text-faint); letter-spacing:0.03em; }
+.post-row h3{ font-family: var(--font-display); font-weight: 700; font-size: 17px; margin-top: 6px; line-height: 1.4; }
+.post-row .excerpt{ margin-top: 6px; color: var(--text-muted); font-size: 13.5px; line-height: 1.65; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+@media (max-width: 480px){ .post-row .post-thumb{ width: 84px; height: 84px; min-width: 84px; border-radius: 10px; } .post-row h3{ font-size: 15px; } }
+
+.more-posts{ margin-top: 40px; padding-top: 22px; border-top: 1px solid var(--glass-border); }
+.more-posts h2{ font-family: var(--font-display); font-weight: 700; font-size: 18px; margin-bottom: 12px; }
+.more-posts .post-list{ margin-inline: -4px; }
 
 article.post{ padding: 28px; }
 article.post .post-date{ font-family: var(--font-mono); font-size: 12px; color: var(--text-faint); }
@@ -246,6 +264,10 @@ article.post .body code{ background: rgba(255,255,255,0.08); padding: 2px 6px; b
 <p>This step comes last on purpose. Deferring render-blocking scripts and minifying CSS/JS gives real gains, but it's also the step most likely to break something — a slider that stops working, a menu that won't open. Do it last, test every interactive element on the page afterward, and keep the ability to exclude specific scripts from optimization when (not if) something breaks.</p>
 <p>Speed work on WordPress is rarely one big fix. It's five or six small, safe changes made in the right order, each one verified before moving to the next.</p></div>
 </article>
+<div class="more-posts"><h2>More posts</h2><div class="post-list">
+<a class="post-row" href="/en/blog/keyword-research-practical-framework/"><img class="post-thumb" src="/assets/blog/keyword-research-practical-framework.jpg" alt="Keyword Research Beyond Search Volume: A Practical Framework" width="128" height="128" loading="lazy"><div class="post-main"><h3>Keyword Research Beyond Search Volume: A Practical Framework</h3><div class="post-date">2026-09-19</div><p class="excerpt">Search volume tells you how many people type something into Google. It doesn&#x27;t tell you whether ranking for it will earn you a single customer.</p></div></a>
+<a class="post-row" href="/en/blog/technical-seo-issues-wordpress/"><img class="post-thumb" src="/assets/blog/technical-seo-issues-wordpress.jpg" alt="5 Technical SEO Issues That Quietly Kill WordPress Rankings" width="128" height="128" loading="lazy"><div class="post-main"><h3>5 Technical SEO Issues That Quietly Kill WordPress Rankings</h3><div class="post-date">2026-08-29</div><p class="excerpt">WordPress makes it easy to publish and just as easy to accumulate crawl and indexing problems nobody notices until traffic drops.</p></div></a>
+</div></div>
 </section>
 </main>
 </body>

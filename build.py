@@ -265,6 +265,8 @@ img{ max-width:100%; display:block; }
 
 .wrap{ max-width: 760px; margin: 0 auto; padding: 0 18px 90px; }
 .topbar{ position: sticky; top: 0; z-index: 40; display:flex; align-items:center; justify-content:space-between; gap:10px; padding: 16px 18px; max-width: 760px; margin: 0 auto; }
+@media (min-width: 900px){ .wrap, .topbar{ max-width: 900px; } }
+@media (min-width: 1200px){ .wrap, .topbar{ max-width: 1040px; } }
 .brand{ font-family: var(--font-display); font-weight: 700; font-size: 14.5px; letter-spacing: 0.02em; padding: 10px 22px; border-radius: 999px; }
 .topbar nav{ display:flex; gap:8px; }
 .topbar nav a{ font-family: var(--font-mono); font-size: 12px; letter-spacing:0.04em; padding: 9px 14px; border-radius: 999px; color: var(--text-muted); }
@@ -329,13 +331,20 @@ section{ margin-top: 46px; }
 footer{ text-align:center; padding: 30px 20px 10px; color: var(--text-faint); font-family: var(--font-mono); font-size: 11.5px; }
 
 /* ---- blog ---- */
-.post-card{ padding: 0 0 22px; margin-bottom: 14px; display:block; overflow:hidden; }
-.post-card .post-thumb{ width:100%; aspect-ratio: 1200/630; object-fit:cover; margin-bottom: 16px; }
-.post-card .post-date, .post-card h3, .post-card .excerpt, .post-card .readmore{ margin-inline: 22px; }
-.post-card .post-date{ font-family: var(--font-mono); font-size: 11.5px; color: var(--text-faint); letter-spacing:0.03em; }
-.post-card h3{ font-family: var(--font-display); font-weight: 700; font-size: 18px; margin-top: 8px; }
-.post-card .excerpt{ margin-top: 8px; color: var(--text-muted); font-size: 14px; line-height: 1.7; }
-.post-card .readmore{ margin-top: 12px; display:inline-block; font-family: var(--font-mono); font-size: 12px; color: var(--blob-cyan); }
+.post-list{ display:flex; flex-direction:column; }
+.post-row{ display:flex; gap:18px; align-items:flex-start; padding: 20px 4px; border-bottom: 1px solid rgba(255,255,255,0.10); }
+.post-list a.post-row:hover{ background: rgba(255,255,255,0.03); }
+.post-row:last-child{ border-bottom: none; }
+.post-row .post-thumb{ width: 128px; height: 128px; min-width: 128px; object-fit:cover; border-radius: 14px; border: 1px solid var(--glass-border); }
+.post-row .post-main{ min-width: 0; flex: 1; }
+.post-row .post-date{ font-family: var(--font-mono); font-size: 11.5px; color: var(--text-faint); letter-spacing:0.03em; }
+.post-row h3{ font-family: var(--font-display); font-weight: 700; font-size: 17px; margin-top: 6px; line-height: 1.4; }
+.post-row .excerpt{ margin-top: 6px; color: var(--text-muted); font-size: 13.5px; line-height: 1.65; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+@media (max-width: 480px){ .post-row .post-thumb{ width: 84px; height: 84px; min-width: 84px; border-radius: 10px; } .post-row h3{ font-size: 15px; } }
+
+.more-posts{ margin-top: 40px; padding-top: 22px; border-top: 1px solid var(--glass-border); }
+.more-posts h2{ font-family: var(--font-display); font-weight: 700; font-size: 18px; margin-bottom: 12px; }
+.more-posts .post-list{ margin-inline: -4px; }
 
 article.post{ padding: 28px; }
 article.post .post-date{ font-family: var(--font-mono); font-size: 12px; color: var(--text-faint); }
@@ -380,6 +389,7 @@ STRINGS = {
         "site_desc": "Farzad Roozbahani is an SEO specialist and WordPress developer in Tehran, helping businesses like RugMaster grow through technical SEO and keyword strategy.",
         "toc": "Table of contents",
         "written_by": "Written by",
+        "more_posts": "More posts",
     },
     "fa": {
         "about": "درباره من", "experience": "سوابق کاری", "skills": "مهارت‌ها",
@@ -390,6 +400,7 @@ STRINGS = {
         "site_desc": "فرزاد روزبهانی متخصص سئو و توسعه‌دهنده‌ی وردپرس در تهران است که به کسب‌وکارهایی مثل رگ‌مستر در رشد از طریق سئوی فنی و استراتژی کلمات کلیدی کمک می‌کند.",
         "toc": "فهرست محتوا",
         "written_by": "نویسنده:",
+        "more_posts": "پست‌های دیگر",
     },
 }
 
@@ -425,12 +436,21 @@ def page_shell(lang, title, description, canonical_path, body, extra_head="", na
 <link rel="sitemap" type="application/xml" href="/sitemap.xml">
 
 <meta property="og:type" content="website">
+<meta property="og:site_name" content="{name}">
 <meta property="og:title" content="{title}">
 <meta property="og:description" content="{description}">
 <meta property="og:image" content="{og_image}">
+<meta property="og:image:width" content="{og_image_w}">
+<meta property="og:image:height" content="{og_image_h}">
+<meta property="og:image:alt" content="{title}">
 <meta property="og:url" content="{canonical}">
 <meta property="og:locale" content="{locale}">
-<meta name="twitter:card" content="summary">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{title}">
+<meta name="twitter:description" content="{description}">
+<meta name="twitter:image" content="{og_image}">
+<meta name="twitter:image:alt" content="{title}">
 
 <link rel="icon" href="data:,">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -453,6 +473,7 @@ def page_shell(lang, title, description, canonical_path, body, extra_head="", na
         locale=("fa_IR" if lang == "fa" else "en_US"), font_link=FONT_LINK[lang],
         extra_head=extra_head, css=CSS, name="Farzad Roozbahani", nav=nav_html, body=body,
         og_image=(og_image if og_image else "{}/assets/farzad.png".format(SITE_URL)),
+        og_image_w=("1200" if og_image else "675"), og_image_h=("630" if og_image else "1200"),
     )
 
 
@@ -612,6 +633,24 @@ def load_posts(lang):
     return posts
 
 
+def render_post_row(lang, p):
+    thumb = ""
+    if p.get("image"):
+        thumb = '<img class="post-thumb" src="{src}" alt="{alt}" width="128" height="128" loading="lazy">'.format(
+            src=p["image"], alt=html.escape(p["title"]))
+    return (
+        '<a class="post-row" href="/{lang}/blog/{slug}/">'
+        '{thumb}'
+        '<div class="post-main">'
+        '<h3>{title}</h3>'
+        '<div class="post-date">{date}</div>'
+        '<p class="excerpt">{excerpt}</p>'
+        '</div></a>'.format(
+            lang=lang, slug=p["slug"], thumb=thumb, date=html.escape(p["date"]),
+            title=html.escape(p["title"]), excerpt=html.escape(p["excerpt"]))
+    )
+
+
 def render_blog_index(lang, posts, hero_name):
     s = STRINGS[lang]
     h1_text = s["blog_index_title"].format(name=hero_name)
@@ -620,21 +659,11 @@ def render_blog_index(lang, posts, hero_name):
     if not posts:
         body.append('<div class="card glass"><p class="muted">{}</p></div>'.format(
             "No posts yet." if lang == "en" else "هنوز پستی منتشر نشده."))
-    for p in posts:
-        thumb = ""
-        if p.get("image"):
-            thumb = '<img class="post-thumb" src="{src}" alt="{alt}" width="1200" height="630" loading="lazy">'.format(
-                src=p["image"], alt=html.escape(p["title"]))
-        body.append(
-            '<a class="post-card glass" href="/{lang}/blog/{slug}/">'
-            '{thumb}'
-            '<div class="post-date">{date}</div><h3>{title}</h3>'
-            '<p class="excerpt">{excerpt}</p>'
-            '<span class="readmore">{more}</span></a>'.format(
-                lang=lang, slug=p["slug"], thumb=thumb, date=html.escape(p["date"]),
-                title=html.escape(p["title"]), excerpt=html.escape(p["excerpt"]),
-                more=("Read more →" if lang == "en" else "ادامه مطلب ←"))
-        )
+    else:
+        body.append('<div class="post-list">')
+        for p in posts:
+            body.append(render_post_row(lang, p))
+        body.append('</div>')
     body.append('</section></main>')
 
     title = s["blog_index_title"].format(name=hero_name)
@@ -669,7 +698,7 @@ def render_toc(toc, s):
         label=s["toc"], items=items)
 
 
-def render_blog_post(lang, post, hero_name, hero_eyebrow=""):
+def render_blog_post(lang, post, hero_name, hero_eyebrow="", all_posts=None):
     s = STRINGS[lang]
     byline = '<div class="byline">{label} <a href="/{lang}/">{name}</a>{sep}{eyebrow}</div>'.format(
         label=s["written_by"], lang=lang, name=html.escape(hero_name),
@@ -692,9 +721,15 @@ def render_blog_post(lang, post, hero_name, hero_eyebrow=""):
         render_toc(post.get("toc", []), s),
         '<div class="body">{}</div>'.format(post["body_html"]),
         '</article>',
-        '</section>',
-        '</main>',
     ]
+    others = [p for p in (all_posts or []) if p["slug"] != post["slug"]]
+    if others:
+        body.append('<div class="more-posts"><h2>{}</h2><div class="post-list">'.format(s["more_posts"]))
+        for p in others:
+            body.append(render_post_row(lang, p))
+        body.append('</div></div>')
+    body.append('</section>')
+    body.append('</main>')
     # no " | Farzad Roozbahani" suffix here: post titles already run close to
     # the 50-60 char guideline on their own, and appending the brand name
     # would push most of them well past it.
@@ -786,7 +821,7 @@ def main():
         sitemap_urls.append({"loc": "{}/{}/blog/".format(SITE_URL, lang), "lastmod": today, "changefreq": "weekly", "priority": "0.8"})
 
         for post in posts:
-            write("{}/blog/{}/index.html".format(lang, post["slug"]), render_blog_post(lang, post, hero.get("name", ""), hero.get("eyebrow", "")))
+            write("{}/blog/{}/index.html".format(lang, post["slug"]), render_blog_post(lang, post, hero.get("name", ""), hero.get("eyebrow", ""), all_posts=posts))
             sitemap_urls.append({"loc": "{}/{}/blog/{}/".format(SITE_URL, lang, post["slug"]), "lastmod": post["date"] or today, "changefreq": "monthly", "priority": "0.6"})
 
     write("index.html", render_root_redirect())
