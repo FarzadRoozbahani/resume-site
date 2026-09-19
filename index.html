@@ -90,7 +90,7 @@
 
   /* ---------- Liquid aurora backdrop ---------- */
   .aurora{ position: fixed; inset: 0; z-index: -2; overflow: hidden; background: var(--bg); }
-  .aurora span{ position:absolute; width: 60vmax; height: 60vmax; border-radius: 50%; filter: blur(90px); opacity: 0.45; mix-blend-mode: screen; }
+  .aurora span{ position:absolute; width: 60vmax; height: 60vmax; border-radius: 50%; filter: blur(70px); opacity: 0.45; mix-blend-mode: screen; will-change: transform; }
   .aurora span:nth-child(1){ background: var(--blob-cyan); top: -18vmax; left: -14vmax; animation: float1 22s var(--ease) infinite alternate; }
   .aurora span:nth-child(2){ background: var(--blob-indigo); bottom: -22vmax; right: -16vmax; animation: float2 26s var(--ease) infinite alternate; }
   .aurora span:nth-child(3){ background: var(--blob-emerald); top: 35%; left: 45%; opacity: 0.28; animation: float3 30s var(--ease) infinite alternate; }
@@ -101,12 +101,18 @@
   @media (prefers-reduced-motion: reduce){ .aurora span{ animation: none !important; } html{ scroll-behavior:auto; } }
 
   /* ---------- True liquid-glass surface ---------- */
+  /* backdrop-filter forces the GPU to resample everything behind an element on every
+     scroll frame. Used sparingly (big cards only) it's cheap; used on dozens of small
+     repeated elements (chips, pills) at once it compounds and drops frames on mid-range
+     phones. .glass = real blurred glass, kept only on large single surfaces.
+     .glass-light = same visual language (tint, border, glossy edge) with NO backdrop
+     blur, used for anything that repeats many times per page. */
   .glass{
     position: relative;
     background: var(--glass-fill);
     border: 1px solid var(--glass-border);
-    backdrop-filter: blur(34px) saturate(180%);
-    -webkit-backdrop-filter: blur(34px) saturate(180%);
+    backdrop-filter: blur(20px) saturate(150%);
+    -webkit-backdrop-filter: blur(20px) saturate(150%);
     border-radius: var(--radius);
     box-shadow:
       0 14px 44px rgba(0,0,0,0.42),
@@ -115,6 +121,7 @@
       inset 0 0 0 1px rgba(255,255,255,0.04);
     isolation: isolate;
     overflow: hidden;
+    contain: layout paint style;
   }
   .glass::before{
     content:"";
@@ -138,6 +145,19 @@
   }
   .glass > *{ position: relative; z-index: 2; }
   .glass:active{ transform: scale(0.985); }
+
+  .glass-light{
+    position: relative;
+    background: linear-gradient(160deg, rgba(255,255,255,0.10), rgba(255,255,255,0.04));
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius);
+    box-shadow:
+      0 6px 18px rgba(0,0,0,0.28),
+      inset 0 1px 0 rgba(255,255,255,0.30),
+      inset 0 -1px 0 rgba(0,0,0,0.18);
+    contain: layout paint style;
+  }
+  .glass-light:active{ transform: scale(0.96); }
 
   .wrap{ max-width: 760px; margin: 0 auto; padding: 0 18px 90px; }
 
@@ -233,7 +253,7 @@
 <div class="aurora" aria-hidden="true"><span></span><span></span><span></span></div>
 
 <div class="topbar">
-  <span class="brand glass" id="brandName">Farzad Roozbahani</span>
+  <span class="brand glass-light" id="brandName">Farzad Roozbahani</span>
 </div>
 
 <main class="wrap" id="siteRoot" hidden>
@@ -242,7 +262,7 @@
     <div class="avatar-ring">
       <div class="inner"><img src="assets/farzad.png" alt="Farzad Roozbahani" width="132" height="132"></div>
     </div>
-    <span class="eyebrow glass" id="heroEyebrow"></span>
+    <span class="eyebrow glass-light" id="heroEyebrow"></span>
     <h1 id="heroName"></h1>
     <p class="tagline" id="heroTagline"></p>
     <div class="location">
@@ -403,7 +423,7 @@
       g.appendChild(el('h3', null, group.header));
       var chips = el('div', 'chips');
       group.body.split(',').map(function(s){ return s.trim(); }).filter(Boolean).forEach(function(name){
-        chips.appendChild(el('span', 'chip glass', name));
+        chips.appendChild(el('span', 'chip glass-light', name));
       });
       g.appendChild(chips);
       skillsWrap.appendChild(g);
@@ -413,7 +433,7 @@
     var softWrap = document.getElementById('softSkillsList');
     softWrap.innerHTML = '';
     (sections['soft skills'] || '').split(',').map(function(s){ return s.trim(); }).filter(Boolean).forEach(function(name){
-      softWrap.appendChild(el('span', 'chip glass', name));
+      softWrap.appendChild(el('span', 'chip glass-light', name));
     });
 
     // education
@@ -446,7 +466,7 @@
     var intWrap = document.getElementById('interestsList');
     intWrap.innerHTML = '';
     (sections.interests || '').split(',').map(function(s){ return s.trim(); }).filter(Boolean).forEach(function(name){
-      var pill = el('span', 'interest glass', iconFor(name) + '<span>' + name + '</span>');
+      var pill = el('span', 'interest glass-light', iconFor(name) + '<span>' + name + '</span>');
       intWrap.appendChild(pill);
     });
 
