@@ -284,9 +284,9 @@ img{ max-width:100%; display:block; }
 @media (min-width: 900px){ .wrap, .topbar{ max-width: 900px; } }
 @media (min-width: 1200px){ .wrap, .topbar{ max-width: 1040px; } }
 .brand{ font-family: var(--font-display); font-weight: 700; font-size: 14.5px; letter-spacing: 0.02em; padding: 10px 22px; border-radius: 999px; }
-.topbar nav{ display:flex; gap:8px; }
+.topbar nav{ display:flex; gap:4px; padding:6px; border-radius:999px; }
 .topbar nav a{ font-family: var(--font-mono); font-size: 12px; letter-spacing:0.04em; padding: 9px 14px; border-radius: 999px; color: var(--text-muted); }
-.topbar nav a:hover, .topbar nav a.active{ color: var(--text); }
+.topbar nav a:hover, .topbar nav a.active{ color: var(--text); background: rgba(255,255,255,0.08); }
 
 .hero{ padding: 26px 0 8px; display:flex; flex-direction: column; align-items:center; text-align:center; }
 .avatar-ring{ width: 132px; height: 132px; border-radius: 50%; padding: 3px; margin-bottom: 22px; background: rgba(255,255,255,0.14); box-shadow: inset 0 1px 2px rgba(255,255,255,0.6), inset 0 -2px 6px rgba(0,0,0,0.3), 0 10px 30px rgba(34,211,238,0.18); border: 1px solid rgba(255,255,255,0.25); }
@@ -435,7 +435,7 @@ def page_shell(lang, title, description, canonical_path, body, extra_head="", na
     alt_en = SITE_URL + ("/en/" if canonical_path.startswith("/en") else "/en" + canonical_path[3:] if canonical_path.startswith("/fa") else "/en/")
     alt_fa = SITE_URL + ("/fa/" if canonical_path.startswith("/fa") else "/fa" + canonical_path[3:] if canonical_path.startswith("/en") else "/fa/")
 
-    nav_html = '<nav><a href="/{o}/" title="{label}">{code}</a><a href="/{l}/blog/" class="{blogcls}">{blog}</a></nav>'.format(
+    nav_html = '<nav class="glass-light"><a href="/{o}/" title="{label}">{code}</a><a href="/{l}/blog/" class="{blogcls}">{blog}</a></nav>'.format(
         o=other, label=("English" if other == "en" else "فارسی"), code=other.upper(),
         l=lang, blogcls=("active" if nav_active == "blog" else ""), blog=s["blog_nav"]
     )
