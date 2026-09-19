@@ -468,7 +468,10 @@ def page_shell(lang, title, description, canonical_path, body, extra_head="", na
 <meta name="twitter:image" content="{og_image}">
 <meta name="twitter:image:alt" content="{title}">
 
-<link rel="icon" href="data:,">
+<link rel="icon" type="image/png" sizes="48x48" href="/assets/favicon-48.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 {font_link}
@@ -773,6 +776,10 @@ def render_root_redirect():
 <link rel="alternate" hreflang="fa" href="{site}/fa/">
 <link rel="alternate" hreflang="x-default" href="{site}/">
 <meta name="robots" content="noindex, follow">
+<link rel="icon" type="image/png" sizes="48x48" href="/assets/favicon-48.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
 <style>
   body{{ background:#070A12; color:#F3F6FB; font-family: -apple-system, sans-serif; min-height:100vh;
         display:flex; align-items:center; justify-content:center; text-align:center; }}
