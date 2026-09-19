@@ -1,13 +1,17 @@
 # Farzad Roozbahani
 
-> SEO Specialist & Developer based in Tehran, Iran. Personal resume and portfolio site.
+> SEO Specialist & Developer based in Tehran, Iran. Bilingual (English/Persian) resume, portfolio, and blog.
 
 Farzad Roozbahani is an SEO specialist and developer. He currently works with RugMaster Pty Ltd (an Australian handmade rug and runner importer) managing SEO and digital marketing end to end — keyword strategy, technical audits, and content. His background includes WordPress development (PCMOD, Calistu Trading, Tosee Ertebat Ramaan) and earlier training in graphic design and motion (Illustration and Video Special Effects, Avini High School). He also writes Python and works with Arduino/C++.
 
+The site is served in two languages at separate URLs: English under /en/, Persian (فارسی) under /fa/. The root URL (/) redirects visitors to their browser-preferred language.
+
 ## Pages
 
-- [Resume / portfolio](https://feris.ir/): Full profile — about, work experience, skills, soft skills, education, languages, interests, and contact details.
-- [Structured content source](https://feris.ir/content.md): The plain-markdown data file that drives every section of the site (experience entries, skill lists, education, languages, interests, contact). This is the most reliable machine-readable source for accurate, up-to-date details.
+- [English resume](https://feris.ir/en/): Full profile — about, work experience, skills, soft skills, education, languages, interests, and contact details.
+- [Persian resume](https://feris.ir/fa/): همان محتوا به فارسی.
+- [English blog](https://feris.ir/en/blog/): Articles and notes.
+- [Persian blog](https://feris.ir/fa/blog/): مقالات و یادداشت‌ها به فارسی.
 
 ## Skills
 

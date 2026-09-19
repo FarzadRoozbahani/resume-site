@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /content/
 
 Sitemap: https://feris.ir/sitemap.xml

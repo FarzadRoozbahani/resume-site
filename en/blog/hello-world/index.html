@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Hello, World | Farzad Roozbahani</title>
+<meta name="description" content="The blog is live. This is a placeholder post — edit or delete it and add your own.">
+<meta name="theme-color" content="#070A12">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://feris.ir/en/blog/hello-world/">
+<link rel="alternate" hreflang="en" href="https://feris.ir/en/">
+<link rel="alternate" hreflang="fa" href="https://feris.ir/fa/blog/hello-world/">
+<link rel="alternate" hreflang="x-default" href="https://feris.ir/">
+<link rel="sitemap" type="application/xml" href="/sitemap.xml">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Hello, World | Farzad Roozbahani">
+<meta property="og:description" content="The blog is live. This is a placeholder post — edit or delete it and add your own.">
+<meta property="og:image" content="https://feris.ir/assets/farzad.png">
+<meta property="og:url" content="https://feris.ir/en/blog/hello-world/">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg: #070A12;
+  --blob-cyan: #22D3EE;
+  --blob-indigo: #6366F1;
+  --blob-emerald: #34D399;
+  --glass-fill: rgba(255,255,255,0.05);
+  --glass-border: rgba(255,255,255,0.22);
+  --text: #F3F6FB;
+  --text-muted: #9AA7BD;
+  --text-faint: #6B7690;
+  --radius: 26px;
+  --font-display: 'Sora', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --ease: cubic-bezier(.22,1,.36,1);
+}
+html[lang="fa"]{
+  --font-display: 'Vazirmatn', sans-serif;
+  --font-body: 'Vazirmatn', sans-serif;
+  --font-mono: 'Vazirmatn', sans-serif;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+html{scroll-behavior:smooth;}
+body{ background: var(--bg); color: var(--text); font-family: var(--font-body); -webkit-font-smoothing: antialiased; min-height:100vh; overflow-x:hidden; position:relative; }
+::selection{ background: var(--blob-cyan); color:#06121A; }
+a{ color:inherit; text-decoration:none; }
+ul{ list-style:none; }
+img{ max-width:100%; display:block; }
+:focus-visible{ outline: 2px solid var(--blob-cyan); outline-offset: 3px; border-radius: 6px; }
+
+.aurora{ position: fixed; inset: 0; z-index: -2; overflow: hidden; background: var(--bg); }
+.aurora span{ position:absolute; width: 60vmax; height: 60vmax; border-radius: 50%; filter: blur(70px); opacity: 0.45; mix-blend-mode: screen; will-change: transform; }
+.aurora span:nth-child(1){ background: var(--blob-cyan); top: -18vmax; left: -14vmax; animation: float1 22s var(--ease) infinite alternate; }
+.aurora span:nth-child(2){ background: var(--blob-indigo); bottom: -22vmax; right: -16vmax; animation: float2 26s var(--ease) infinite alternate; }
+.aurora span:nth-child(3){ background: var(--blob-emerald); top: 35%; left: 45%; opacity: 0.28; animation: float3 30s var(--ease) infinite alternate; }
+.aurora::after{ content:""; position:absolute; inset:0; background: radial-gradient(ellipse at 50% 0%, transparent 0%, var(--bg) 78%); }
+@keyframes float1{ from{ transform: translate(0,0) scale(1);} to{ transform: translate(8vw, 10vh) scale(1.15);} }
+@keyframes float2{ from{ transform: translate(0,0) scale(1);} to{ transform: translate(-6vw, -8vh) scale(1.1);} }
+@keyframes float3{ from{ transform: translate(-50%,-50%) scale(0.9);} to{ transform: translate(-42%,-58%) scale(1.2);} }
+@media (prefers-reduced-motion: reduce){ .aurora span{ animation: none !important; } html{ scroll-behavior:auto; } }
+
+.glass{
+  position: relative; background: var(--glass-fill); border: 1px solid var(--glass-border);
+  backdrop-filter: blur(20px) saturate(150%); -webkit-backdrop-filter: blur(20px) saturate(150%);
+  border-radius: var(--radius);
+  box-shadow: 0 14px 44px rgba(0,0,0,0.42), inset 0 1px 0 rgba(255,255,255,0.45), inset 0 -1px 0 rgba(0,0,0,0.25), inset 0 0 0 1px rgba(255,255,255,0.04);
+  isolation: isolate; overflow: hidden; contain: layout paint style;
+}
+.glass::before{ content:""; position:absolute; inset:0; background: linear-gradient(135deg, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0.08) 22%, rgba(255,255,255,0) 45%); mix-blend-mode: overlay; pointer-events:none; z-index: 1; }
+.glass::after{ content:""; position:absolute; inset:0; border-radius: inherit; padding: 1px; background: linear-gradient(160deg, rgba(255,255,255,0.55), rgba(255,255,255,0.02) 30%, rgba(255,255,255,0) 60%, rgba(255,255,255,0.12) 100%); -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; pointer-events:none; z-index: 1; }
+.glass > *{ position: relative; z-index: 2; }
+.glass:active{ transform: scale(0.985); }
+
+.glass-light{
+  position: relative; background: linear-gradient(160deg, rgba(255,255,255,0.10), rgba(255,255,255,0.04));
+  border: 1px solid var(--glass-border); border-radius: var(--radius);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.28), inset 0 1px 0 rgba(255,255,255,0.30), inset 0 -1px 0 rgba(0,0,0,0.18);
+  contain: layout paint style;
+}
+.glass-light:active{ transform: scale(0.96); }
+
+.wrap{ max-width: 760px; margin: 0 auto; padding: 0 18px 90px; }
+.topbar{ position: sticky; top: 0; z-index: 40; display:flex; align-items:center; justify-content:space-between; gap:10px; padding: 16px 18px; max-width: 760px; margin: 0 auto; }
+.brand{ font-family: var(--font-display); font-weight: 700; font-size: 14.5px; letter-spacing: 0.02em; padding: 10px 22px; border-radius: 999px; }
+.topbar nav{ display:flex; gap:8px; }
+.topbar nav a{ font-family: var(--font-mono); font-size: 12px; letter-spacing:0.04em; padding: 9px 14px; border-radius: 999px; color: var(--text-muted); }
+.topbar nav a:hover, .topbar nav a.active{ color: var(--text); }
+
+.hero{ padding: 26px 0 8px; display:flex; flex-direction: column; align-items:center; text-align:center; }
+.avatar-ring{ width: 132px; height: 132px; border-radius: 50%; padding: 3px; margin-bottom: 22px; background: rgba(255,255,255,0.14); box-shadow: inset 0 1px 2px rgba(255,255,255,0.6), inset 0 -2px 6px rgba(0,0,0,0.3), 0 10px 30px rgba(34,211,238,0.18); border: 1px solid rgba(255,255,255,0.25); }
+.avatar-ring .inner{ width:100%; height:100%; border-radius: 50%; overflow: hidden; background: var(--bg); }
+.avatar-ring img{ width:100%; height:100%; object-fit: cover; object-position: center 14%; }
+.eyebrow{ font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--blob-cyan); padding: 7px 16px; border-radius: 999px; margin-bottom: 18px; display:inline-block; }
+h1{ font-family: var(--font-display); font-weight: 800; font-size: clamp(30px, 8vw, 44px); line-height: 1.15; letter-spacing: -0.01em; }
+.tagline{ margin-top: 12px; font-size: 16px; line-height: 1.7; color: var(--text-muted); max-width: 460px; }
+.location{ margin-top: 14px; font-family: var(--font-mono); font-size: 12.5px; color: var(--text-faint); display:flex; align-items:center; gap:6px; }
+.dot{ width:6px; height:6px; border-radius:50%; background: var(--blob-emerald); box-shadow: 0 0 8px var(--blob-emerald); }
+.cta-row{ margin-top: 28px; display:flex; gap:10px; flex-wrap: wrap; justify-content:center; }
+.btn{ font-family: var(--font-body); font-weight: 600; font-size: 14.5px; padding: 13px 26px; border-radius: 999px; display:inline-flex; align-items:center; gap:8px; transition: transform .3s var(--ease); }
+.btn:active{ transform: scale(0.96); }
+.btn-primary{ background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(230,238,248,0.9)); color: #06121A; border: none; box-shadow: 0 10px 28px rgba(34,211,238,0.25), inset 0 1px 0 rgba(255,255,255,1); }
+
+section{ margin-top: 46px; }
+.section-head{ display:flex; align-items:baseline; gap: 10px; margin-bottom: 18px; padding: 0 4px; }
+.section-head .num{ font-family: var(--font-mono); font-size: 12px; color: var(--text-faint); }
+.section-head h2{ font-family: var(--font-display); font-weight: 700; font-size: 22px; }
+.card{ padding: 24px; margin-bottom: 14px; }
+.card p, .card .muted{ color: var(--text-muted); line-height: 1.85; font-size: 14.5px; }
+
+.timeline{ position:relative; }
+.timeline::before{ content:""; position:absolute; top: 8px; bottom: 8px; inset-inline-start: 27px; width: 1px; background: linear-gradient(var(--blob-cyan), var(--blob-indigo), transparent); opacity: 0.4; }
+.job{ position: relative; padding: 20px 22px; padding-inline-start: 58px; margin-bottom: 12px; }
+.job::before{ content:""; position:absolute; inset-inline-start: 22px; top: 26px; width: 11px; height: 11px; border-radius: 50%; background: var(--bg); border: 2px solid var(--blob-cyan); box-shadow: 0 0 10px rgba(34,211,238,0.6); z-index: 2; }
+.job .role{ font-family: var(--font-display); font-weight: 700; font-size: 16px; }
+.job .org{ color: var(--blob-cyan); font-size: 13.5px; font-weight: 600; margin-top: 2px; }
+.job .period{ font-family: var(--font-mono); font-size: 11.5px; color: var(--text-faint); margin-top: 4px; letter-spacing: 0.03em; }
+.job .desc{ margin-top: 10px; }
+
+.skill-group{ margin-bottom: 18px; }
+.skill-group:last-child{ margin-bottom: 0; }
+.skill-group h3{ font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-faint); margin-bottom: 10px; padding: 0 4px; }
+.chips{ display:flex; flex-wrap:wrap; gap:8px; }
+.chip{ font-size: 13px; font-weight: 500; padding: 9px 15px; border-radius: 999px; color: var(--text); transition: transform .25s var(--ease), border-color .25s var(--ease); }
+.chip:hover{ transform: translateY(-2px); border-color: var(--blob-cyan); }
+
+.edu-title{ font-family: var(--font-display); font-weight: 700; font-size: 16px; }
+.edu-sub{ color: var(--blob-emerald); font-size: 13.5px; font-weight: 600; margin-top: 4px; }
+.langs{ display:flex; gap: 12px; flex-wrap: wrap; }
+.lang-card{ flex:1; min-width: 140px; padding: 18px; text-align:center; }
+.lang-card .name{ font-family: var(--font-display); font-weight: 700; font-size: 15px; }
+.lang-card .level{ font-family: var(--font-mono); font-size: 11.5px; color: var(--blob-cyan); margin-top: 6px; letter-spacing:0.05em; }
+
+.interests{ display:flex; gap:10px; flex-wrap:wrap; }
+.interest{ display:flex; align-items:center; gap:8px; padding: 11px 17px; font-size: 13.5px; font-weight: 500; }
+.interest svg{ width:16px; height:16px; stroke: var(--blob-cyan); flex-shrink:0; }
+
+.contact-grid{ display:flex; flex-direction:column; gap:10px; }
+.contact-row{ display:flex; align-items:center; gap:14px; padding: 18px; transition: border-color .25s var(--ease); }
+.contact-row:hover{ border-color: var(--blob-cyan); }
+.contact-row .icon{ width: 40px; height: 40px; border-radius: 13px; display:flex; align-items:center; justify-content:center; background: linear-gradient(135deg, rgba(34,211,238,0.18), rgba(99,102,241,0.18)); flex-shrink:0; }
+.contact-row .icon svg{ width:19px; height:19px; stroke: var(--blob-cyan); }
+.contact-row .label{ font-family: var(--font-mono); font-size: 10.5px; color: var(--text-faint); text-transform:uppercase; letter-spacing:0.06em; }
+.contact-row .value{ font-size: 15px; font-weight: 600; margin-top: 2px; word-break: break-all; }
+
+footer{ text-align:center; padding: 30px 20px 10px; color: var(--text-faint); font-family: var(--font-mono); font-size: 11.5px; }
+
+/* ---- blog ---- */
+.post-card{ padding: 22px; margin-bottom: 14px; display:block; }
+.post-card .post-date{ font-family: var(--font-mono); font-size: 11.5px; color: var(--text-faint); letter-spacing:0.03em; }
+.post-card h3{ font-family: var(--font-display); font-weight: 700; font-size: 18px; margin-top: 8px; }
+.post-card .excerpt{ margin-top: 8px; color: var(--text-muted); font-size: 14px; line-height: 1.7; }
+.post-card .readmore{ margin-top: 12px; display:inline-block; font-family: var(--font-mono); font-size: 12px; color: var(--blob-cyan); }
+
+article.post{ padding: 28px; }
+article.post .post-date{ font-family: var(--font-mono); font-size: 12px; color: var(--text-faint); }
+article.post h1{ margin-top: 10px; font-size: clamp(26px, 6vw, 36px); }
+article.post .body{ margin-top: 22px; color: var(--text-muted); line-height: 1.9; font-size: 15.5px; }
+article.post .body h3, article.post .body h4, article.post .body h5{ font-family: var(--font-display); color: var(--text); margin: 26px 0 10px; }
+article.post .body p{ margin-bottom: 16px; }
+article.post .body ul{ margin: 0 0 16px; padding-inline-start: 22px; list-style: disc; }
+article.post .body ol{ margin: 0 0 16px; padding-inline-start: 22px; list-style: decimal; }
+article.post .body li{ margin-bottom: 6px; }
+article.post .body a{ color: var(--blob-cyan); text-decoration: underline; }
+article.post .body code{ background: rgba(255,255,255,0.08); padding: 2px 6px; border-radius: 6px; font-family: var(--font-mono); font-size: 0.9em; }
+.back-link{ display:inline-flex; align-items:center; gap:6px; font-family: var(--font-mono); font-size: 12.5px; color: var(--text-faint); margin-bottom: 18px; }
+.back-link:hover{ color: var(--text); }
+
+@media (min-width: 620px){ .hero{ padding-top: 42px; } }
+</style>
+</head>
+<body>
+<div class="aurora" aria-hidden="true"><span></span><span></span><span></span></div>
+<div class="topbar">
+  <a href="/en/" class="brand glass-light">Farzad Roozbahani</a>
+  <nav><a href="/fa/" title="فارسی">FA</a><a href="/en/blog/" class="active">Blog</a></nav>
+</div>
+<main class="wrap">
+<section style="padding-top:26px">
+<a class="back-link" href="/en/blog/">← Back to blog</a>
+<article class="post glass">
+<div class="post-date">2026-09-19</div>
+<h1>Hello, World</h1>
+<div class="body"><p>This is the first post on the blog. It exists to show the format a post file needs — replace this text with real content, or delete this file entirely once you have your own first post.</p>
+<h4>How to add a new post</h4>
+<ol><li>Create a new Markdown file under <code>content/en/blog/</code> (and <code>content/fa/blog/</code> for the Persian version, if you're writing both).</li><li>Give it frontmatter at the top: <code>title</code>, <code>date</code> (YYYY-MM-DD), and <code>excerpt</code>.</li><li>Write the body below the frontmatter using plain Markdown — paragraphs, <code>**bold**</code>, <code>*italic*</code>, <code># / ## / ###</code> headings, <code>- </code> bullet lists, and <code>[link text](https://example.com)</code> links.</li><li>Run <code>python3 build.py</code> from the project root.</li><li>Commit and push. GitHub Pages serves whatever <code>build.py</code> generated.</li></ol>
+<p>The filename becomes the post's URL slug, so <code>hello-world.md</code> publishes at <code>/en/blog/hello-world/</code>.</p></div>
+</article>
+</section>
+</main>
+</body>
+</html>
