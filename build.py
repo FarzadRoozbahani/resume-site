@@ -24,6 +24,7 @@ import os
 import re
 import html
 import glob
+import shutil
 from datetime import date
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -89,7 +90,14 @@ def parse_frontmatter(text):
     for line in fm_raw.splitlines():
         mm = re.match(r"^(\w+):\s*(.*)$", line.strip())
         if mm:
-            fm[mm.group(1).strip().lower()] = mm.group(2).strip()
+            value = mm.group(2).strip()
+            # a value doesn't need quoting even when it contains its own ':' —
+            # the key/value split above only ever breaks on the first colon —
+            # but strip a wrapping quote pair if one was used anyway (common
+            # frontmatter habit) so it doesn't end up literally in the title.
+            if len(value) >= 2 and value[0] == value[-1] and value[0] in "\"'":
+                value = value[1:-1]
+            fm[mm.group(1).strip().lower()] = value
     return fm, body.strip()
 
 
@@ -668,6 +676,13 @@ def main():
 
         write("{}/index.html".format(lang), render_resume(lang, sections))
         sitemap_urls.append({"loc": "{}/{}/".format(SITE_URL, lang), "lastmod": today, "changefreq": "monthly", "priority": "1.0"})
+
+        # wipe the previous blog output before regenerating: build.py only ever
+        # writes files, so a post removed from content/ would otherwise leave its
+        # old /lang/blog/<slug>/ page live and orphaned (dead but still online).
+        blog_dir = os.path.join(ROOT, lang, "blog")
+        if os.path.isdir(blog_dir):
+            shutil.rmtree(blog_dir)
 
         posts = load_posts(lang)
         write("{}/blog/index.html".format(lang), render_blog_index(lang, posts, hero.get("name", "")))

@@ -3,21 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Blog — Farzad Roozbahani</title>
-<meta name="description" content="Farzad Roozbahani is an SEO specialist and developer based in Tehran, working with clients including RugMaster (Australia) on technical SEO, keyword strategy, and WordPress development.">
+<title>5 Technical SEO Issues That Quietly Kill WordPress Rankings | Farzad Roozbahani</title>
+<meta name="description" content="WordPress makes it easy to publish and just as easy to accumulate crawl and indexing problems nobody notices until traffic drops.">
 <meta name="theme-color" content="#070A12">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://feris.ir/en/blog/">
+<link rel="canonical" href="https://feris.ir/en/blog/technical-seo-issues-wordpress/">
 <link rel="alternate" hreflang="en" href="https://feris.ir/en/">
-<link rel="alternate" hreflang="fa" href="https://feris.ir/fa/blog/">
+<link rel="alternate" hreflang="fa" href="https://feris.ir/fa/blog/technical-seo-issues-wordpress/">
 <link rel="alternate" hreflang="x-default" href="https://feris.ir/">
 <link rel="sitemap" type="application/xml" href="/sitemap.xml">
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="Blog — Farzad Roozbahani">
-<meta property="og:description" content="Farzad Roozbahani is an SEO specialist and developer based in Tehran, working with clients including RugMaster (Australia) on technical SEO, keyword strategy, and WordPress development.">
+<meta property="og:title" content="5 Technical SEO Issues That Quietly Kill WordPress Rankings | Farzad Roozbahani">
+<meta property="og:description" content="WordPress makes it easy to publish and just as easy to accumulate crawl and indexing problems nobody notices until traffic drops.">
 <meta property="og:image" content="https://feris.ir/assets/farzad.png">
-<meta property="og:url" content="https://feris.ir/en/blog/">
+<meta property="og:url" content="https://feris.ir/en/blog/technical-seo-issues-wordpress/">
 <meta property="og:locale" content="en_US">
 <meta name="twitter:card" content="summary">
 
@@ -185,10 +185,25 @@ article.post .body code{ background: rgba(255,255,255,0.08); padding: 2px 6px; b
 </div>
 <main class="wrap">
 <section style="padding-top:26px">
-<div class="section-head"><h2 style="font-size:28px">Blog</h2></div>
-<a class="post-card glass" href="/en/blog/keyword-research-practical-framework/"><div class="post-date">2026-09-19</div><h3>Keyword Research Beyond Search Volume: A Practical Framework</h3><p class="excerpt">Search volume tells you how many people type something into Google. It doesn&#x27;t tell you whether ranking for it will earn you a single customer.</p><span class="readmore">Read more →</span></a>
-<a class="post-card glass" href="/en/blog/speed-up-wordpress-without-breaking-it/"><div class="post-date">2026-09-08</div><h3>How to Speed Up a WordPress Site Without Breaking It</h3><p class="excerpt">The fastest way to make a WordPress site faster is also the fastest way to break it. Here&#x27;s the order that actually works.</p><span class="readmore">Read more →</span></a>
-<a class="post-card glass" href="/en/blog/technical-seo-issues-wordpress/"><div class="post-date">2026-08-29</div><h3>5 Technical SEO Issues That Quietly Kill WordPress Rankings</h3><p class="excerpt">WordPress makes it easy to publish and just as easy to accumulate crawl and indexing problems nobody notices until traffic drops.</p><span class="readmore">Read more →</span></a>
-</section></main>
+<a class="back-link" href="/en/blog/">← Back to blog</a>
+<article class="post glass">
+<div class="post-date">2026-08-29</div>
+<h1>5 Technical SEO Issues That Quietly Kill WordPress Rankings</h1>
+<div class="body"><p>WordPress is friendly to write in and unfriendly to leave unattended. Most of the technical SEO problems I see on client sites aren't dramatic — no plugin crashed, nothing looks broken in the browser. They just quietly waste crawl budget and confuse search engines about which page should actually rank. Here are the five I check first on every new site.</p>
+<h4>1. Tag and category archives competing with your real content</h4>
+<p>WordPress generates an archive page for every tag and category by default. On a blog with loose tagging habits, that can mean dozens of thin, near-duplicate pages indexed alongside your actual articles — all fighting each other for the same keywords. Decide early whether tag archives earn their place in the index. If they don't add unique value, <code>noindex</code> them in your SEO plugin rather than leaving them to compete with pages that matter.</p>
+<h4>2. Canonical tags that point to the wrong place</h4>
+<p>This one is sneaky because it's invisible until you check <code>view-source</code>. Page builders, some caching plugins, and multilingual setups can all quietly rewrite or duplicate canonical tags — sending Google to index the wrong URL, or splitting ranking signals between <code>http</code>/<code>https</code>, <code>www</code>/non-<code>www</code>, or a staging URL that never got cleaned up. Crawl the site with a tool like Screaming Frog after any theme or plugin change and check that every canonical tag actually points to itself, not somewhere else.</p>
+<h4>3. A sitemap that isn't wired up properly</h4>
+<p>A sitemap doesn't help if it isn't in <code>robots.txt</code>, isn't submitted in Search Console, or lists URLs that 404. I've seen sites running for years with a sitemap plugin installed and no one having ever pointed Google at it. Check Search Console's Sitemaps report for errors — not just whether it says "Success," but whether the <em>indexed</em> count roughly matches the <em>submitted</em> count.</p>
+<h4>4. Crawl budget wasted on pages that shouldn't be crawled</h4>
+<p>Author archives on a single-author blog, <code>?replytocom</code> comment-reply URLs, internal search result pages, feed URLs — none of these need to be crawled, and on a large site they can genuinely compete with your real pages for crawl budget. A few lines in <code>robots.txt</code> fix most of it:</p>
+<p>``<code> Disallow: /?replytocom= Disallow: /?s= Disallow: /author/ </code>``</p>
+<h4>5. Redirect chains from old migrations</h4>
+<p>Every domain migration, HTTP-to-HTTPS switch, or URL structure change that didn't get cleaned up leaves a redirect behind. Individually harmless — but stack three or four of them on the same URL and you're burning crawl budget and diluting link equity on every single request. Run a redirect-chain check after any migration and flatten anything more than one hop.</p>
+<p>None of these require touching code most of the time — they need someone willing to actually crawl the site, read the reports, and fix what they find instead of assuming the SEO plugin is handling it. That's most of the job.</p></div>
+</article>
+</section>
+</main>
 </body>
 </html>

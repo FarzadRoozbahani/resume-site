@@ -19,8 +19,20 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://feris.ir/en/blog/hello-world/</loc>
+    <loc>https://feris.ir/en/blog/keyword-research-practical-framework/</loc>
     <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://feris.ir/en/blog/speed-up-wordpress-without-breaking-it/</loc>
+    <lastmod>2026-09-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://feris.ir/en/blog/technical-seo-issues-wordpress/</loc>
+    <lastmod>2026-08-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -37,8 +49,20 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://feris.ir/fa/blog/hello-world/</loc>
+    <loc>https://feris.ir/fa/blog/keyword-research-practical-framework/</loc>
     <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://feris.ir/fa/blog/speed-up-wordpress-without-breaking-it/</loc>
+    <lastmod>2026-09-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://feris.ir/fa/blog/technical-seo-issues-wordpress/</loc>
+    <lastmod>2026-08-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>

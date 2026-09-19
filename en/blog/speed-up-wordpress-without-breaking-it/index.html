@@ -3,21 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Blog — Farzad Roozbahani</title>
-<meta name="description" content="Farzad Roozbahani is an SEO specialist and developer based in Tehran, working with clients including RugMaster (Australia) on technical SEO, keyword strategy, and WordPress development.">
+<title>How to Speed Up a WordPress Site Without Breaking It | Farzad Roozbahani</title>
+<meta name="description" content="The fastest way to make a WordPress site faster is also the fastest way to break it. Here&#x27;s the order that actually works.">
 <meta name="theme-color" content="#070A12">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://feris.ir/en/blog/">
+<link rel="canonical" href="https://feris.ir/en/blog/speed-up-wordpress-without-breaking-it/">
 <link rel="alternate" hreflang="en" href="https://feris.ir/en/">
-<link rel="alternate" hreflang="fa" href="https://feris.ir/fa/blog/">
+<link rel="alternate" hreflang="fa" href="https://feris.ir/fa/blog/speed-up-wordpress-without-breaking-it/">
 <link rel="alternate" hreflang="x-default" href="https://feris.ir/">
 <link rel="sitemap" type="application/xml" href="/sitemap.xml">
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="Blog — Farzad Roozbahani">
-<meta property="og:description" content="Farzad Roozbahani is an SEO specialist and developer based in Tehran, working with clients including RugMaster (Australia) on technical SEO, keyword strategy, and WordPress development.">
+<meta property="og:title" content="How to Speed Up a WordPress Site Without Breaking It | Farzad Roozbahani">
+<meta property="og:description" content="The fastest way to make a WordPress site faster is also the fastest way to break it. Here&#x27;s the order that actually works.">
 <meta property="og:image" content="https://feris.ir/assets/farzad.png">
-<meta property="og:url" content="https://feris.ir/en/blog/">
+<meta property="og:url" content="https://feris.ir/en/blog/speed-up-wordpress-without-breaking-it/">
 <meta property="og:locale" content="en_US">
 <meta name="twitter:card" content="summary">
 
@@ -185,10 +185,28 @@ article.post .body code{ background: rgba(255,255,255,0.08); padding: 2px 6px; b
 </div>
 <main class="wrap">
 <section style="padding-top:26px">
-<div class="section-head"><h2 style="font-size:28px">Blog</h2></div>
-<a class="post-card glass" href="/en/blog/keyword-research-practical-framework/"><div class="post-date">2026-09-19</div><h3>Keyword Research Beyond Search Volume: A Practical Framework</h3><p class="excerpt">Search volume tells you how many people type something into Google. It doesn&#x27;t tell you whether ranking for it will earn you a single customer.</p><span class="readmore">Read more →</span></a>
-<a class="post-card glass" href="/en/blog/speed-up-wordpress-without-breaking-it/"><div class="post-date">2026-09-08</div><h3>How to Speed Up a WordPress Site Without Breaking It</h3><p class="excerpt">The fastest way to make a WordPress site faster is also the fastest way to break it. Here&#x27;s the order that actually works.</p><span class="readmore">Read more →</span></a>
-<a class="post-card glass" href="/en/blog/technical-seo-issues-wordpress/"><div class="post-date">2026-08-29</div><h3>5 Technical SEO Issues That Quietly Kill WordPress Rankings</h3><p class="excerpt">WordPress makes it easy to publish and just as easy to accumulate crawl and indexing problems nobody notices until traffic drops.</p><span class="readmore">Read more →</span></a>
-</section></main>
+<a class="back-link" href="/en/blog/">← Back to blog</a>
+<article class="post glass">
+<div class="post-date">2026-09-08</div>
+<h1>How to Speed Up a WordPress Site Without Breaking It</h1>
+<div class="body"><p>Every "make WordPress faster" checklist tells you to install a caching plugin, compress images, and pick a good host. All true, all incomplete. What actually matters is the <em>order</em> you do things in, because performance fixes have a habit of breaking each other when applied all at once.</p>
+<h4>Start by measuring, not guessing</h4>
+<p>Run the page through Google PageSpeed Insights or an equivalent tool and note the three Core Web Vitals separately: <strong>LCP</strong> (how fast the main content appears), <strong>CLS</strong> (how much the layout jumps around while loading), and <strong>INP</strong> (how responsive the page feels to interaction). Each has a different cause, so "the site feels slow" isn't specific enough to fix.</p>
+<h4>Caching first, always</h4>
+<p>A page cache (full HTML pages served without hitting PHP or the database again) is the single biggest win on almost every WordPress site, and it's also the safest — it doesn't touch your code. If your host provides a server-level cache (LiteSpeed Cache is common on Iranian hosting), use that before adding a second caching plugin on top of it; two caching layers fighting each other causes more "why isn't my change showing up" support tickets than any other single issue.</p>
+<h4>Then object caching, if your host supports it</h4>
+<p>Object caching stores database query results in memory instead of re-running them on every page load. It matters most on sites with a lot of dynamic content — WooCommerce stores, membership sites, anything logged-in-heavy. Skip it if your host doesn't support persistent object caching (Redis or Memcached); a half-configured object cache is worse than none.</p>
+<h4>Images: format and loading strategy, not just compression</h4>
+<p>Compressing a JPEG helps, but converting to <strong>WebP</strong> and adding native lazy-loading (<code>loading="lazy"</code> — WordPress does this automatically for images below the fold since core added it) usually helps more. The one place to be careful: never lazy-load your hero image or anything above the fold — that actively hurts LCP, since the browser has to wait to discover it needs to load it at all.</p>
+<h4>Audit plugins before you optimize them</h4>
+<p>Every inactive plugin still gets scanned on load in some setups, and every active one that enqueues its own CSS/JS on every page — even pages that don't use it — adds weight nobody asked for. Before reaching for a "minify everything" plugin, go through the plugin list and ask honestly whether each one is still needed. I usually find two or three that were installed for a feature that got abandoned months ago.</p>
+<h4>Database cleanup, carefully</h4>
+<p>Post revisions, spam comments, and expired transients accumulate for years on sites nobody's touched. Clean them out — but always with a backup first, and never with a plugin that runs automatically on a schedule without you reviewing what it's about to delete.</p>
+<h4>Last: defer and minify JS/CSS</h4>
+<p>This step comes last on purpose. Deferring render-blocking scripts and minifying CSS/JS gives real gains, but it's also the step most likely to break something — a slider that stops working, a menu that won't open. Do it last, test every interactive element on the page afterward, and keep the ability to exclude specific scripts from optimization when (not if) something breaks.</p>
+<p>Speed work on WordPress is rarely one big fix. It's five or six small, safe changes made in the right order, each one verified before moving to the next.</p></div>
+</article>
+</section>
+</main>
 </body>
 </html>

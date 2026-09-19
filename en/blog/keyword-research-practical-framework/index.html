@@ -3,21 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Hello, World | Farzad Roozbahani</title>
-<meta name="description" content="The blog is live. This is a placeholder post — edit or delete it and add your own.">
+<title>Keyword Research Beyond Search Volume: A Practical Framework | Farzad Roozbahani</title>
+<meta name="description" content="Search volume tells you how many people type something into Google. It doesn&#x27;t tell you whether ranking for it will earn you a single customer.">
 <meta name="theme-color" content="#070A12">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://feris.ir/en/blog/hello-world/">
+<link rel="canonical" href="https://feris.ir/en/blog/keyword-research-practical-framework/">
 <link rel="alternate" hreflang="en" href="https://feris.ir/en/">
-<link rel="alternate" hreflang="fa" href="https://feris.ir/fa/blog/hello-world/">
+<link rel="alternate" hreflang="fa" href="https://feris.ir/fa/blog/keyword-research-practical-framework/">
 <link rel="alternate" hreflang="x-default" href="https://feris.ir/">
 <link rel="sitemap" type="application/xml" href="/sitemap.xml">
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="Hello, World | Farzad Roozbahani">
-<meta property="og:description" content="The blog is live. This is a placeholder post — edit or delete it and add your own.">
+<meta property="og:title" content="Keyword Research Beyond Search Volume: A Practical Framework | Farzad Roozbahani">
+<meta property="og:description" content="Search volume tells you how many people type something into Google. It doesn&#x27;t tell you whether ranking for it will earn you a single customer.">
 <meta property="og:image" content="https://feris.ir/assets/farzad.png">
-<meta property="og:url" content="https://feris.ir/en/blog/hello-world/">
+<meta property="og:url" content="https://feris.ir/en/blog/keyword-research-practical-framework/">
 <meta property="og:locale" content="en_US">
 <meta name="twitter:card" content="summary">
 
@@ -188,11 +188,23 @@ article.post .body code{ background: rgba(255,255,255,0.08); padding: 2px 6px; b
 <a class="back-link" href="/en/blog/">← Back to blog</a>
 <article class="post glass">
 <div class="post-date">2026-09-19</div>
-<h1>Hello, World</h1>
-<div class="body"><p>This is the first post on the blog. It exists to show the format a post file needs — replace this text with real content, or delete this file entirely once you have your own first post.</p>
-<h4>How to add a new post</h4>
-<ol><li>Create a new Markdown file under <code>content/en/blog/</code> (and <code>content/fa/blog/</code> for the Persian version, if you're writing both).</li><li>Give it frontmatter at the top: <code>title</code>, <code>date</code> (YYYY-MM-DD), and <code>excerpt</code>.</li><li>Write the body below the frontmatter using plain Markdown — paragraphs, <code>**bold**</code>, <code>*italic*</code>, <code># / ## / ###</code> headings, <code>- </code> bullet lists, and <code>[link text](https://example.com)</code> links.</li><li>Run <code>python3 build.py</code> from the project root.</li><li>Commit and push. GitHub Pages serves whatever <code>build.py</code> generated.</li></ol>
-<p>The filename becomes the post's URL slug, so <code>hello-world.md</code> publishes at <code>/en/blog/hello-world/</code>.</p></div>
+<h1>Keyword Research Beyond Search Volume: A Practical Framework</h1>
+<div class="body"><p>Most keyword research stops at the first number a tool shows: monthly search volume. That number answers one question — how many people search this — and ignores the one that actually matters to a business: will ranking for it bring the right people. Here's the framework I actually use.</p>
+<h4>Step 1: Sort by intent before you sort by volume</h4>
+<p>Every keyword falls roughly into one of four buckets:</p>
+<ol><li><strong>Informational</strong> — someone looking for an answer ("how does SEO work")</li><li><strong>Navigational</strong> — someone looking for a specific site or brand ("rugmaster login")</li><li><strong>Commercial investigation</strong> — someone comparing options before buying ("best handmade rug cleaner")</li><li><strong>Transactional</strong> — someone ready to act ("buy persian rug runner online")</li></ol>
+<p>A keyword with 10,000 monthly searches that's purely informational will rarely convert on a product page. A keyword with 200 searches that's clearly transactional often outperforms it. Tag every keyword with its intent <em>before</em> you look at volume — it changes which ones are actually worth targeting.</p>
+<h4>Step 2: Start from what you already rank for</h4>
+<p>Before hunting for new keywords, pull Google Search Console's Performance report and sort by impressions. These are terms Google already thinks your page is relevant for — you're just not ranking high enough to get the clicks yet. Fixing a page that's sitting at position 11-15 for a decent-volume term is almost always faster than trying to rank a new page from zero.</p>
+<h4>Step 3: Crawl your own site before you crawl the competition</h4>
+<p>Run your site through Screaming Frog and check what keywords are already showing up in your titles, headers, and body content — sometimes accidentally, sometimes because an old page targets the same term a new page is about to target. Keyword cannibalization (two of your own pages competing for the same term) is one of the most common reasons a well-optimized site still underperforms. Map keywords to pages explicitly, in a spreadsheet, before writing anything new.</p>
+<h4>Step 4: Layer in seasonality</h4>
+<p>Google Trends won't give you volume, but it will show you <em>when</em> interest rises and falls. A keyword that looks flat in a tool's annual average might actually spike hard for six weeks a year — which matters enormously for planning content and campaigns around it, especially for anything tied to a season, holiday, or buying cycle.</p>
+<h4>Step 5: Track rankings, not just rank once and forget</h4>
+<p>A keyword you ranked for last quarter isn't guaranteed to stay there. Tools like Wincher or Moz's rank tracker catch slow slides in position before they show up as a traffic drop in analytics — which is usually a month or two after the actual ranking loss happened.</p>
+<h4>The actual framework, in order</h4>
+<ol><li>List candidate keywords from GSC, competitor research, and customer language (what do people actually type in your contact form or support inbox?)</li><li>Tag each by intent</li><li>Check against your existing site crawl for cannibalization</li><li>Check Trends for seasonality</li><li>Map each surviving keyword to exactly one page</li><li>Track rank on a schedule, not just at launch</li></ol>
+<p>Volume is one input among six. Treated as the only one, it's how you end up ranking for a lot of keywords that never turn into a customer.</p></div>
 </article>
 </section>
 </main>
