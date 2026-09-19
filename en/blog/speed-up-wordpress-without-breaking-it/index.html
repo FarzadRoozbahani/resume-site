@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>How to Speed Up a WordPress Site Without Breaking It | Farzad Roozbahani</title>
+<title>How to Speed Up a WordPress Site Without Breaking It</title>
 <meta name="description" content="The fastest way to make a WordPress site faster is also the fastest way to break it. Here&#x27;s the order that actually works.">
 <meta name="theme-color" content="#070A12">
 <meta name="robots" content="index, follow">
@@ -14,9 +14,9 @@
 <link rel="sitemap" type="application/xml" href="/sitemap.xml">
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="How to Speed Up a WordPress Site Without Breaking It | Farzad Roozbahani">
+<meta property="og:title" content="How to Speed Up a WordPress Site Without Breaking It">
 <meta property="og:description" content="The fastest way to make a WordPress site faster is also the fastest way to break it. Here&#x27;s the order that actually works.">
-<meta property="og:image" content="https://feris.ir/assets/farzad.png">
+<meta property="og:image" content="https://feris.ir/assets/blog/speed-up-wordpress-without-breaking-it.svg">
 <meta property="og:url" content="https://feris.ir/en/blog/speed-up-wordpress-without-breaking-it/">
 <meta property="og:locale" content="en_US">
 <meta name="twitter:card" content="summary">
@@ -25,7 +25,31 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How to Speed Up a WordPress Site Without Breaking It",
+  "description": "The fastest way to make a WordPress site faster is also the fastest way to break it. Here's the order that actually works.",
+  "datePublished": "2026-09-08",
+  "dateModified": "2026-09-08",
+  "inLanguage": "en",
+  "author": {
+    "@type": "Person",
+    "name": "Farzad Roozbahani",
+    "url": "https://feris.ir/en/"
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Farzad Roozbahani"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://feris.ir/en/blog/speed-up-wordpress-without-breaking-it/"
+  },
+  "image": "https://feris.ir/assets/blog/speed-up-wordpress-without-breaking-it.svg"
+}
+</script>
 <style>
 :root{
   --bg: #070A12;
@@ -154,7 +178,9 @@ section{ margin-top: 46px; }
 footer{ text-align:center; padding: 30px 20px 10px; color: var(--text-faint); font-family: var(--font-mono); font-size: 11.5px; }
 
 /* ---- blog ---- */
-.post-card{ padding: 22px; margin-bottom: 14px; display:block; }
+.post-card{ padding: 0 0 22px; margin-bottom: 14px; display:block; overflow:hidden; }
+.post-card .post-thumb{ width:100%; aspect-ratio: 1200/630; object-fit:cover; margin-bottom: 16px; }
+.post-card .post-date, .post-card h3, .post-card .excerpt, .post-card .readmore{ margin-inline: 22px; }
 .post-card .post-date{ font-family: var(--font-mono); font-size: 11.5px; color: var(--text-faint); letter-spacing:0.03em; }
 .post-card h3{ font-family: var(--font-display); font-weight: 700; font-size: 18px; margin-top: 8px; }
 .post-card .excerpt{ margin-top: 8px; color: var(--text-muted); font-size: 14px; line-height: 1.7; }
@@ -163,8 +189,19 @@ footer{ text-align:center; padding: 30px 20px 10px; color: var(--text-faint); fo
 article.post{ padding: 28px; }
 article.post .post-date{ font-family: var(--font-mono); font-size: 12px; color: var(--text-faint); }
 article.post h1{ margin-top: 10px; font-size: clamp(26px, 6vw, 36px); }
+article.post .byline{ margin-top: 10px; font-size: 13px; color: var(--text-faint); }
+article.post .byline a{ color: var(--blob-cyan); }
+article.post .post-cover{ width:100%; aspect-ratio: 1200/630; object-fit:cover; border-radius: 18px; margin-top: 22px; border: 1px solid var(--glass-border); }
+.toc{ margin-top: 22px; padding: 18px 20px; }
+.toc-title{ font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--blob-cyan); margin-bottom: 10px; }
+.toc ol{ list-style: decimal; padding-inline-start: 20px; display:flex; flex-direction:column; gap: 6px; }
+.toc a{ color: var(--text-muted); font-size: 14px; }
+.toc a:hover{ color: var(--text); }
 article.post .body{ margin-top: 22px; color: var(--text-muted); line-height: 1.9; font-size: 15.5px; }
-article.post .body h3, article.post .body h4, article.post .body h5{ font-family: var(--font-display); color: var(--text); margin: 26px 0 10px; }
+article.post .body h2, article.post .body h3, article.post .body h4{ font-family: var(--font-display); color: var(--text); margin: 26px 0 10px; scroll-margin-top: 90px; }
+article.post .body h2{ font-size: 21px; }
+article.post .body h3{ font-size: 18px; }
+article.post .body h4{ font-size: 16px; }
 article.post .body p{ margin-bottom: 16px; }
 article.post .body ul{ margin: 0 0 16px; padding-inline-start: 22px; list-style: disc; }
 article.post .body ol{ margin: 0 0 16px; padding-inline-start: 22px; list-style: decimal; }
@@ -189,20 +226,23 @@ article.post .body code{ background: rgba(255,255,255,0.08); padding: 2px 6px; b
 <article class="post glass">
 <div class="post-date">2026-09-08</div>
 <h1>How to Speed Up a WordPress Site Without Breaking It</h1>
+<div class="byline">Written by <a href="/en/">Farzad Roozbahani</a> — SEO Specialist &amp; Developer</div>
+<img class="post-cover" src="/assets/blog/speed-up-wordpress-without-breaking-it.svg" alt="How to Speed Up a WordPress Site Without Breaking It" width="1200" height="630">
+<nav class="toc glass-light" aria-label="Table of contents"><div class="toc-title">Table of contents</div><ol><li><a href="#s1">Start by measuring, not guessing</a></li><li><a href="#s2">Caching first, always</a></li><li><a href="#s3">Then object caching, if your host supports it</a></li><li><a href="#s4">Images: format and loading strategy, not just compression</a></li><li><a href="#s5">Audit plugins before you optimize them</a></li><li><a href="#s6">Database cleanup, carefully</a></li><li><a href="#s7">Last: defer and minify JS/CSS</a></li></ol></nav>
 <div class="body"><p>Every "make WordPress faster" checklist tells you to install a caching plugin, compress images, and pick a good host. All true, all incomplete. What actually matters is the <em>order</em> you do things in, because performance fixes have a habit of breaking each other when applied all at once.</p>
-<h4>Start by measuring, not guessing</h4>
+<h2 id="s1">Start by measuring, not guessing</h2>
 <p>Run the page through Google PageSpeed Insights or an equivalent tool and note the three Core Web Vitals separately: <strong>LCP</strong> (how fast the main content appears), <strong>CLS</strong> (how much the layout jumps around while loading), and <strong>INP</strong> (how responsive the page feels to interaction). Each has a different cause, so "the site feels slow" isn't specific enough to fix.</p>
-<h4>Caching first, always</h4>
+<h2 id="s2">Caching first, always</h2>
 <p>A page cache (full HTML pages served without hitting PHP or the database again) is the single biggest win on almost every WordPress site, and it's also the safest — it doesn't touch your code. If your host provides a server-level cache (LiteSpeed Cache is common on Iranian hosting), use that before adding a second caching plugin on top of it; two caching layers fighting each other causes more "why isn't my change showing up" support tickets than any other single issue.</p>
-<h4>Then object caching, if your host supports it</h4>
+<h2 id="s3">Then object caching, if your host supports it</h2>
 <p>Object caching stores database query results in memory instead of re-running them on every page load. It matters most on sites with a lot of dynamic content — WooCommerce stores, membership sites, anything logged-in-heavy. Skip it if your host doesn't support persistent object caching (Redis or Memcached); a half-configured object cache is worse than none.</p>
-<h4>Images: format and loading strategy, not just compression</h4>
+<h2 id="s4">Images: format and loading strategy, not just compression</h2>
 <p>Compressing a JPEG helps, but converting to <strong>WebP</strong> and adding native lazy-loading (<code>loading="lazy"</code> — WordPress does this automatically for images below the fold since core added it) usually helps more. The one place to be careful: never lazy-load your hero image or anything above the fold — that actively hurts LCP, since the browser has to wait to discover it needs to load it at all.</p>
-<h4>Audit plugins before you optimize them</h4>
+<h2 id="s5">Audit plugins before you optimize them</h2>
 <p>Every inactive plugin still gets scanned on load in some setups, and every active one that enqueues its own CSS/JS on every page — even pages that don't use it — adds weight nobody asked for. Before reaching for a "minify everything" plugin, go through the plugin list and ask honestly whether each one is still needed. I usually find two or three that were installed for a feature that got abandoned months ago.</p>
-<h4>Database cleanup, carefully</h4>
+<h2 id="s6">Database cleanup, carefully</h2>
 <p>Post revisions, spam comments, and expired transients accumulate for years on sites nobody's touched. Clean them out — but always with a backup first, and never with a plugin that runs automatically on a schedule without you reviewing what it's about to delete.</p>
-<h4>Last: defer and minify JS/CSS</h4>
+<h2 id="s7">Last: defer and minify JS/CSS</h2>
 <p>This step comes last on purpose. Deferring render-blocking scripts and minifying CSS/JS gives real gains, but it's also the step most likely to break something — a slider that stops working, a menu that won't open. Do it last, test every interactive element on the page afterward, and keep the ability to exclude specific scripts from optimization when (not if) something breaks.</p>
 <p>Speed work on WordPress is rarely one big fix. It's five or six small, safe changes made in the right order, each one verified before moving to the next.</p></div>
 </article>

@@ -2,4 +2,18 @@ User-agent: *
 Allow: /
 Disallow: /content/
 
+# AI/GEO crawlers — explicitly allowed so this site can be cited by
+# AI search and answer engines (Google AI Overviews, ChatGPT, Perplexity, Claude).
+User-agent: GPTBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
 Sitemap: https://feris.ir/sitemap.xml

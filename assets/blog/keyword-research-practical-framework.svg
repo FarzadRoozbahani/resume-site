@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-labelledby="t">
+<title id="t">Keyword research magnifying glass illustration</title>
+<defs>
+  <radialGradient id="bg1" cx="20%" cy="15%" r="60%"><stop offset="0%" stop-color="#6366F1" stop-opacity="0.55"/><stop offset="100%" stop-color="#6366F1" stop-opacity="0"/></radialGradient>
+  <radialGradient id="bg2" cx="90%" cy="85%" r="60%"><stop offset="0%" stop-color="#22D3EE" stop-opacity="0.5"/><stop offset="100%" stop-color="#22D3EE" stop-opacity="0"/></radialGradient>
+  <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#ffffff" stop-opacity="0.16"/><stop offset="100%" stop-color="#ffffff" stop-opacity="0.04"/></linearGradient>
+  <filter id="blur1"><feGaussianBlur stdDeviation="60"/></filter>
+</defs>
+<rect width="1200" height="630" fill="#070A12"/>
+<circle cx="200" cy="90" r="260" fill="url(#bg1)" filter="url(#blur1)"/>
+<circle cx="1040" cy="560" r="280" fill="url(#bg2)" filter="url(#blur1)"/>
+<rect x="430" y="150" width="340" height="330" rx="30" fill="url(#glass)" stroke="#ffffff" stroke-opacity="0.22" stroke-width="1.5"/>
+<g transform="translate(600,300)">
+  <circle r="70" fill="none" stroke="#22D3EE" stroke-width="10"/>
+  <line x1="50" y1="50" x2="110" y2="110" stroke="#22D3EE" stroke-width="14" stroke-linecap="round"/>
+  <g fill="#F3F6FB" opacity="0.85">
+    <rect x="-40" y="-10" width="60" height="8" rx="4"/>
+    <rect x="-40" y="8" width="40" height="8" rx="4"/>
+    <rect x="-40" y="-28" width="80" height="8" rx="4"/>
+  </g>
+</g>
+</svg>

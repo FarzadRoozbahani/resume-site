@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>تحقیق کلمات کلیدی فراتر از حجم جست‌وجو: یه چارچوب عملی | فرزاد روزبهانی</title>
+<title>تحقیق کلمات کلیدی فراتر از حجم جست‌وجو: یه چارچوب عملی</title>
 <meta name="description" content="حجم جست‌وجو فقط می‌گه چندنفر یه چیزی رو تو گوگل تایپ می‌کنن. نمی‌گه رتبه‌گرفتن براش حتی یه مشتری برات میاره یا نه.">
 <meta name="theme-color" content="#070A12">
 <meta name="robots" content="index, follow">
@@ -14,9 +14,9 @@
 <link rel="sitemap" type="application/xml" href="/sitemap.xml">
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="تحقیق کلمات کلیدی فراتر از حجم جست‌وجو: یه چارچوب عملی | فرزاد روزبهانی">
+<meta property="og:title" content="تحقیق کلمات کلیدی فراتر از حجم جست‌وجو: یه چارچوب عملی">
 <meta property="og:description" content="حجم جست‌وجو فقط می‌گه چندنفر یه چیزی رو تو گوگل تایپ می‌کنن. نمی‌گه رتبه‌گرفتن براش حتی یه مشتری برات میاره یا نه.">
-<meta property="og:image" content="https://feris.ir/assets/farzad.png">
+<meta property="og:image" content="https://feris.ir/assets/blog/keyword-research-practical-framework.svg">
 <meta property="og:url" content="https://feris.ir/fa/blog/keyword-research-practical-framework/">
 <meta property="og:locale" content="fa_IR">
 <meta name="twitter:card" content="summary">
@@ -25,7 +25,31 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "تحقیق کلمات کلیدی فراتر از حجم جست‌وجو: یه چارچوب عملی",
+  "description": "حجم جست‌وجو فقط می‌گه چندنفر یه چیزی رو تو گوگل تایپ می‌کنن. نمی‌گه رتبه‌گرفتن براش حتی یه مشتری برات میاره یا نه.",
+  "datePublished": "2026-09-19",
+  "dateModified": "2026-09-19",
+  "inLanguage": "fa",
+  "author": {
+    "@type": "Person",
+    "name": "فرزاد روزبهانی",
+    "url": "https://feris.ir/fa/"
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "فرزاد روزبهانی"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://feris.ir/fa/blog/keyword-research-practical-framework/"
+  },
+  "image": "https://feris.ir/assets/blog/keyword-research-practical-framework.svg"
+}
+</script>
 <style>
 :root{
   --bg: #070A12;
@@ -154,7 +178,9 @@ section{ margin-top: 46px; }
 footer{ text-align:center; padding: 30px 20px 10px; color: var(--text-faint); font-family: var(--font-mono); font-size: 11.5px; }
 
 /* ---- blog ---- */
-.post-card{ padding: 22px; margin-bottom: 14px; display:block; }
+.post-card{ padding: 0 0 22px; margin-bottom: 14px; display:block; overflow:hidden; }
+.post-card .post-thumb{ width:100%; aspect-ratio: 1200/630; object-fit:cover; margin-bottom: 16px; }
+.post-card .post-date, .post-card h3, .post-card .excerpt, .post-card .readmore{ margin-inline: 22px; }
 .post-card .post-date{ font-family: var(--font-mono); font-size: 11.5px; color: var(--text-faint); letter-spacing:0.03em; }
 .post-card h3{ font-family: var(--font-display); font-weight: 700; font-size: 18px; margin-top: 8px; }
 .post-card .excerpt{ margin-top: 8px; color: var(--text-muted); font-size: 14px; line-height: 1.7; }
@@ -163,8 +189,19 @@ footer{ text-align:center; padding: 30px 20px 10px; color: var(--text-faint); fo
 article.post{ padding: 28px; }
 article.post .post-date{ font-family: var(--font-mono); font-size: 12px; color: var(--text-faint); }
 article.post h1{ margin-top: 10px; font-size: clamp(26px, 6vw, 36px); }
+article.post .byline{ margin-top: 10px; font-size: 13px; color: var(--text-faint); }
+article.post .byline a{ color: var(--blob-cyan); }
+article.post .post-cover{ width:100%; aspect-ratio: 1200/630; object-fit:cover; border-radius: 18px; margin-top: 22px; border: 1px solid var(--glass-border); }
+.toc{ margin-top: 22px; padding: 18px 20px; }
+.toc-title{ font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--blob-cyan); margin-bottom: 10px; }
+.toc ol{ list-style: decimal; padding-inline-start: 20px; display:flex; flex-direction:column; gap: 6px; }
+.toc a{ color: var(--text-muted); font-size: 14px; }
+.toc a:hover{ color: var(--text); }
 article.post .body{ margin-top: 22px; color: var(--text-muted); line-height: 1.9; font-size: 15.5px; }
-article.post .body h3, article.post .body h4, article.post .body h5{ font-family: var(--font-display); color: var(--text); margin: 26px 0 10px; }
+article.post .body h2, article.post .body h3, article.post .body h4{ font-family: var(--font-display); color: var(--text); margin: 26px 0 10px; scroll-margin-top: 90px; }
+article.post .body h2{ font-size: 21px; }
+article.post .body h3{ font-size: 18px; }
+article.post .body h4{ font-size: 16px; }
 article.post .body p{ margin-bottom: 16px; }
 article.post .body ul{ margin: 0 0 16px; padding-inline-start: 22px; list-style: disc; }
 article.post .body ol{ margin: 0 0 16px; padding-inline-start: 22px; list-style: decimal; }
@@ -189,20 +226,23 @@ article.post .body code{ background: rgba(255,255,255,0.08); padding: 2px 6px; b
 <article class="post glass">
 <div class="post-date">2026-09-19</div>
 <h1>تحقیق کلمات کلیدی فراتر از حجم جست‌وجو: یه چارچوب عملی</h1>
+<div class="byline">نویسنده: <a href="/fa/">فرزاد روزبهانی</a> — متخصص سئو و توسعه‌دهنده</div>
+<img class="post-cover" src="/assets/blog/keyword-research-practical-framework.svg" alt="تحقیق کلمات کلیدی فراتر از حجم جست‌وجو: یه چارچوب عملی" width="1200" height="630">
+<nav class="toc glass-light" aria-label="فهرست محتوا"><div class="toc-title">فهرست محتوا</div><ol><li><a href="#s1">قدم ۱: قبل از حجم، بر اساس نیت (intent) دسته‌بندی کن</a></li><li><a href="#s2">قدم ۲: از چیزی که الان براش رتبه داری شروع کن</a></li><li><a href="#s3">قدم ۳: قبل از کرال‌کردن رقیب، سایت خودت رو کرال کن</a></li><li><a href="#s4">قدم ۴: فصلی‌بودن رو هم اضافه کن</a></li><li><a href="#s5">قدم ۵: رتبه رو دنبال کن، نه فقط یه‌بار رتبه بگیر و فراموش کنی</a></li><li><a href="#s6">چارچوب واقعی، به ترتیب</a></li></ol></nav>
 <div class="body"><p>بیشتر تحقیق‌های کلمات کلیدی سر همون اولین عددی که ابزار نشون می‌ده متوقف می‌شن: حجم جست‌وجوی ماهانه. این عدد فقط به یه سؤال جواب می‌ده — چندنفر این رو جست‌وجو می‌کنن — و اون سؤالی که واقعاً برای کسب‌وکار مهمه رو نادیده می‌گیره: رتبه‌گرفتن براش آدم درست رو میاره یا نه. این چارچوبیه که واقعاً استفاده می‌کنم.</p>
-<h4>قدم ۱: قبل از حجم، بر اساس نیت (intent) دسته‌بندی کن</h4>
+<h2 id="s1">قدم ۱: قبل از حجم، بر اساس نیت (intent) دسته‌بندی کن</h2>
 <p>هر کلمه‌ی کلیدی تقریباً تو یکی از این چهار دسته قرار می‌گیره:</p>
 <ol><li><strong>اطلاعاتی</strong> — کسی که دنبال جواب یه سؤاله ("سئو چطور کار می‌کنه")</li><li><strong>ناوبری</strong> — کسی که دنبال یه سایت یا برند خاصه ("ورود به رگ‌مستر")</li><li><strong>تحقیق تجاری</strong> — کسی که قبل از خرید داره گزینه‌ها رو مقایسه می‌کنه ("بهترین دستگاه شستشوی فرش دستباف")</li><li><strong>تراکنشی</strong> — کسی که آماده‌ی اقدامه ("خرید آنلاین رانر فرش ایرانی")</li></ol>
 <p>یه کلمه‌ی کلیدی با ۱۰٬۰۰۰ جست‌وجوی ماهانه که کاملاً اطلاعاتیه، به‌ندرت تو صفحه‌ی محصول تبدیل به فروش می‌شه. یه کلمه با ۲۰۰ جست‌وجو که کاملاً تراکنشیه، اغلب عملکرد بهتری داره. قبل از نگاه‌کردن به حجم، نیت هر کلمه رو مشخص کن — این تعیین می‌کنه کدوم‌ها واقعاً ارزش هدف‌گیری دارن.</p>
-<h4>قدم ۲: از چیزی که الان براش رتبه داری شروع کن</h4>
+<h2 id="s2">قدم ۲: از چیزی که الان براش رتبه داری شروع کن</h2>
 <p>قبل از دنبال‌کردن کلمات جدید، گزارش Performance سرچ کنسول رو بکش و بر اساس نمایش (impressions) مرتب کن. این‌ها کلماتی هستن که گوگل از قبل فکر می‌کنه صفحه‌ات براشون مرتبطه — فقط هنوز رتبه‌ات به‌اندازه‌ی کافی بالا نیست که کلیک بگیری. اصلاح یه صفحه که تو رتبه‌ی ۱۱ تا ۱۵ برای یه کلمه‌ی پرحجم نشسته، تقریباً همیشه سریع‌تر از تلاش برای رتبه‌گرفتن یه صفحه‌ی جدید از صفره.</p>
-<h4>قدم ۳: قبل از کرال‌کردن رقیب، سایت خودت رو کرال کن</h4>
+<h2 id="s3">قدم ۳: قبل از کرال‌کردن رقیب، سایت خودت رو کرال کن</h2>
 <p>سایتت رو با Screaming Frog کرال کن و ببین چه کلماتی از قبل تو تیترها، هدینگ‌ها و متن سایتت هست — گاهی تصادفی، گاهی چون یه صفحه‌ی قدیمی دقیقاً همون کلمه‌ای رو هدف گرفته که یه صفحه‌ی جدید می‌خواد هدفش بگیره. کانیبالیزیشن کلمات کلیدی (وقتی دو تا از صفحات خودت سر یه کلمه با هم رقابت می‌کنن) یکی از رایج‌ترین دلایلیه که یه سایت خوب‌بهینه‌شده هنوز ضعیف عمل می‌کنه. کلمات رو صریح، تو یه اسپردشیت، به صفحات نگاشت کن قبل از نوشتن هر محتوای جدید.</p>
-<h4>قدم ۴: فصلی‌بودن رو هم اضافه کن</h4>
+<h2 id="s4">قدم ۴: فصلی‌بودن رو هم اضافه کن</h2>
 <p>گوگل ترندز حجم بهت نمی‌ده، ولی نشون می‌ده <em>کِی</em> علاقه بالا و پایین می‌ره. یه کلمه که تو میانگین سالانه‌ی یه ابزار صاف به‌نظر می‌رسه، ممکنه واقعاً شش هفته تو سال یه جهش شدید داشته باشه — که برای برنامه‌ریزی محتوا و کمپین دور اون موضوع خیلی مهمه، مخصوصاً برای هر چیزی که به فصل، مناسبت، یا چرخه‌ی خرید مرتبطه.</p>
-<h4>قدم ۵: رتبه رو دنبال کن، نه فقط یه‌بار رتبه بگیر و فراموش کنی</h4>
+<h2 id="s5">قدم ۵: رتبه رو دنبال کن، نه فقط یه‌بار رتبه بگیر و فراموش کنی</h2>
 <p>کلمه‌ای که فصل قبل براش رتبه داشتی، تضمینی نیست همون‌جا بمونه. ابزارهایی مثل Wincher یا رتبه‌یاب Moz، لغزش تدریجی رتبه رو قبل از اینکه تو آنالیتیکس به‌شکل افت ترافیک دیده بشه، شناسایی می‌کنن — که معمولاً یکی دو ماه بعد از افت واقعی رتبه اتفاق می‌افته.</p>
-<h4>چارچوب واقعی، به ترتیب</h4>
+<h2 id="s6">چارچوب واقعی، به ترتیب</h2>
 <ol><li>کلمات کاندید رو از سرچ کنسول، تحقیق رقبا، و زبان مشتری (مردم واقعاً تو فرم تماس یا صندوق پشتیبانی چی تایپ می‌کنن؟) لیست کن</li><li>هر کدوم رو بر اساس نیت تگ بزن</li><li>با کرال سایت خودت چک کن کانیبالیزیشن هست یا نه</li><li>گوگل ترندز رو برای فصلی‌بودن چک کن</li><li>هر کلمه‌ی باقی‌مونده رو دقیقاً به یه صفحه نگاشت کن</li><li>رتبه رو به‌صورت زمان‌بندی‌شده دنبال کن، نه فقط موقع انتشار</li></ol>
 <p>حجم فقط یکی از شش ورودیه. اگه به‌عنوان تنها معیار در نظرش بگیری، همینه که می‌شه برای کلی کلمه‌ی کلیدی رتبه گرفت که هیچ‌وقت تبدیل به مشتری نمی‌شن.</p></div>
 </article>

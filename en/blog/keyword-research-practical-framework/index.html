@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Keyword Research Beyond Search Volume: A Practical Framework | Farzad Roozbahani</title>
+<title>Keyword Research Beyond Search Volume: A Practical Framework</title>
 <meta name="description" content="Search volume tells you how many people type something into Google. It doesn&#x27;t tell you whether ranking for it will earn you a single customer.">
 <meta name="theme-color" content="#070A12">
 <meta name="robots" content="index, follow">
@@ -14,9 +14,9 @@
 <link rel="sitemap" type="application/xml" href="/sitemap.xml">
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="Keyword Research Beyond Search Volume: A Practical Framework | Farzad Roozbahani">
+<meta property="og:title" content="Keyword Research Beyond Search Volume: A Practical Framework">
 <meta property="og:description" content="Search volume tells you how many people type something into Google. It doesn&#x27;t tell you whether ranking for it will earn you a single customer.">
-<meta property="og:image" content="https://feris.ir/assets/farzad.png">
+<meta property="og:image" content="https://feris.ir/assets/blog/keyword-research-practical-framework.svg">
 <meta property="og:url" content="https://feris.ir/en/blog/keyword-research-practical-framework/">
 <meta property="og:locale" content="en_US">
 <meta name="twitter:card" content="summary">
@@ -25,7 +25,31 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Keyword Research Beyond Search Volume: A Practical Framework",
+  "description": "Search volume tells you how many people type something into Google. It doesn't tell you whether ranking for it will earn you a single customer.",
+  "datePublished": "2026-09-19",
+  "dateModified": "2026-09-19",
+  "inLanguage": "en",
+  "author": {
+    "@type": "Person",
+    "name": "Farzad Roozbahani",
+    "url": "https://feris.ir/en/"
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Farzad Roozbahani"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://feris.ir/en/blog/keyword-research-practical-framework/"
+  },
+  "image": "https://feris.ir/assets/blog/keyword-research-practical-framework.svg"
+}
+</script>
 <style>
 :root{
   --bg: #070A12;
@@ -154,7 +178,9 @@ section{ margin-top: 46px; }
 footer{ text-align:center; padding: 30px 20px 10px; color: var(--text-faint); font-family: var(--font-mono); font-size: 11.5px; }
 
 /* ---- blog ---- */
-.post-card{ padding: 22px; margin-bottom: 14px; display:block; }
+.post-card{ padding: 0 0 22px; margin-bottom: 14px; display:block; overflow:hidden; }
+.post-card .post-thumb{ width:100%; aspect-ratio: 1200/630; object-fit:cover; margin-bottom: 16px; }
+.post-card .post-date, .post-card h3, .post-card .excerpt, .post-card .readmore{ margin-inline: 22px; }
 .post-card .post-date{ font-family: var(--font-mono); font-size: 11.5px; color: var(--text-faint); letter-spacing:0.03em; }
 .post-card h3{ font-family: var(--font-display); font-weight: 700; font-size: 18px; margin-top: 8px; }
 .post-card .excerpt{ margin-top: 8px; color: var(--text-muted); font-size: 14px; line-height: 1.7; }
@@ -163,8 +189,19 @@ footer{ text-align:center; padding: 30px 20px 10px; color: var(--text-faint); fo
 article.post{ padding: 28px; }
 article.post .post-date{ font-family: var(--font-mono); font-size: 12px; color: var(--text-faint); }
 article.post h1{ margin-top: 10px; font-size: clamp(26px, 6vw, 36px); }
+article.post .byline{ margin-top: 10px; font-size: 13px; color: var(--text-faint); }
+article.post .byline a{ color: var(--blob-cyan); }
+article.post .post-cover{ width:100%; aspect-ratio: 1200/630; object-fit:cover; border-radius: 18px; margin-top: 22px; border: 1px solid var(--glass-border); }
+.toc{ margin-top: 22px; padding: 18px 20px; }
+.toc-title{ font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--blob-cyan); margin-bottom: 10px; }
+.toc ol{ list-style: decimal; padding-inline-start: 20px; display:flex; flex-direction:column; gap: 6px; }
+.toc a{ color: var(--text-muted); font-size: 14px; }
+.toc a:hover{ color: var(--text); }
 article.post .body{ margin-top: 22px; color: var(--text-muted); line-height: 1.9; font-size: 15.5px; }
-article.post .body h3, article.post .body h4, article.post .body h5{ font-family: var(--font-display); color: var(--text); margin: 26px 0 10px; }
+article.post .body h2, article.post .body h3, article.post .body h4{ font-family: var(--font-display); color: var(--text); margin: 26px 0 10px; scroll-margin-top: 90px; }
+article.post .body h2{ font-size: 21px; }
+article.post .body h3{ font-size: 18px; }
+article.post .body h4{ font-size: 16px; }
 article.post .body p{ margin-bottom: 16px; }
 article.post .body ul{ margin: 0 0 16px; padding-inline-start: 22px; list-style: disc; }
 article.post .body ol{ margin: 0 0 16px; padding-inline-start: 22px; list-style: decimal; }
@@ -189,20 +226,23 @@ article.post .body code{ background: rgba(255,255,255,0.08); padding: 2px 6px; b
 <article class="post glass">
 <div class="post-date">2026-09-19</div>
 <h1>Keyword Research Beyond Search Volume: A Practical Framework</h1>
+<div class="byline">Written by <a href="/en/">Farzad Roozbahani</a> — SEO Specialist &amp; Developer</div>
+<img class="post-cover" src="/assets/blog/keyword-research-practical-framework.svg" alt="Keyword Research Beyond Search Volume: A Practical Framework" width="1200" height="630">
+<nav class="toc glass-light" aria-label="Table of contents"><div class="toc-title">Table of contents</div><ol><li><a href="#s1">Step 1: Sort by intent before you sort by volume</a></li><li><a href="#s2">Step 2: Start from what you already rank for</a></li><li><a href="#s3">Step 3: Crawl your own site before you crawl the competition</a></li><li><a href="#s4">Step 4: Layer in seasonality</a></li><li><a href="#s5">Step 5: Track rankings, not just rank once and forget</a></li><li><a href="#s6">The actual framework, in order</a></li></ol></nav>
 <div class="body"><p>Most keyword research stops at the first number a tool shows: monthly search volume. That number answers one question — how many people search this — and ignores the one that actually matters to a business: will ranking for it bring the right people. Here's the framework I actually use.</p>
-<h4>Step 1: Sort by intent before you sort by volume</h4>
+<h2 id="s1">Step 1: Sort by intent before you sort by volume</h2>
 <p>Every keyword falls roughly into one of four buckets:</p>
 <ol><li><strong>Informational</strong> — someone looking for an answer ("how does SEO work")</li><li><strong>Navigational</strong> — someone looking for a specific site or brand ("rugmaster login")</li><li><strong>Commercial investigation</strong> — someone comparing options before buying ("best handmade rug cleaner")</li><li><strong>Transactional</strong> — someone ready to act ("buy persian rug runner online")</li></ol>
 <p>A keyword with 10,000 monthly searches that's purely informational will rarely convert on a product page. A keyword with 200 searches that's clearly transactional often outperforms it. Tag every keyword with its intent <em>before</em> you look at volume — it changes which ones are actually worth targeting.</p>
-<h4>Step 2: Start from what you already rank for</h4>
+<h2 id="s2">Step 2: Start from what you already rank for</h2>
 <p>Before hunting for new keywords, pull Google Search Console's Performance report and sort by impressions. These are terms Google already thinks your page is relevant for — you're just not ranking high enough to get the clicks yet. Fixing a page that's sitting at position 11-15 for a decent-volume term is almost always faster than trying to rank a new page from zero.</p>
-<h4>Step 3: Crawl your own site before you crawl the competition</h4>
+<h2 id="s3">Step 3: Crawl your own site before you crawl the competition</h2>
 <p>Run your site through Screaming Frog and check what keywords are already showing up in your titles, headers, and body content — sometimes accidentally, sometimes because an old page targets the same term a new page is about to target. Keyword cannibalization (two of your own pages competing for the same term) is one of the most common reasons a well-optimized site still underperforms. Map keywords to pages explicitly, in a spreadsheet, before writing anything new.</p>
-<h4>Step 4: Layer in seasonality</h4>
+<h2 id="s4">Step 4: Layer in seasonality</h2>
 <p>Google Trends won't give you volume, but it will show you <em>when</em> interest rises and falls. A keyword that looks flat in a tool's annual average might actually spike hard for six weeks a year — which matters enormously for planning content and campaigns around it, especially for anything tied to a season, holiday, or buying cycle.</p>
-<h4>Step 5: Track rankings, not just rank once and forget</h4>
+<h2 id="s5">Step 5: Track rankings, not just rank once and forget</h2>
 <p>A keyword you ranked for last quarter isn't guaranteed to stay there. Tools like Wincher or Moz's rank tracker catch slow slides in position before they show up as a traffic drop in analytics — which is usually a month or two after the actual ranking loss happened.</p>
-<h4>The actual framework, in order</h4>
+<h2 id="s6">The actual framework, in order</h2>
 <ol><li>List candidate keywords from GSC, competitor research, and customer language (what do people actually type in your contact form or support inbox?)</li><li>Tag each by intent</li><li>Check against your existing site crawl for cannibalization</li><li>Check Trends for seasonality</li><li>Map each surviving keyword to exactly one page</li><li>Track rank on a schedule, not just at launch</li></ol>
 <p>Volume is one input among six. Treated as the only one, it's how you end up ranking for a lot of keywords that never turn into a customer.</p></div>
 </article>

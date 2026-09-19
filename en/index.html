@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Farzad Roozbahani | SEO Specialist &amp; Developer</title>
-<meta name="description" content="Farzad Roozbahani is an SEO specialist and developer based in Tehran, working with clients including RugMaster (Australia) on technical SEO, keyword strategy, and WordPress development.">
+<meta name="description" content="Farzad Roozbahani is an SEO specialist and WordPress developer in Tehran, helping businesses like RugMaster grow through technical SEO and keyword strategy.">
 <meta name="theme-color" content="#070A12">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://feris.ir/en/">
@@ -15,7 +15,7 @@
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="Farzad Roozbahani | SEO Specialist &amp; Developer">
-<meta property="og:description" content="Farzad Roozbahani is an SEO specialist and developer based in Tehran, working with clients including RugMaster (Australia) on technical SEO, keyword strategy, and WordPress development.">
+<meta property="og:description" content="Farzad Roozbahani is an SEO specialist and WordPress developer in Tehran, helping businesses like RugMaster grow through technical SEO and keyword strategy.">
 <meta property="og:image" content="https://feris.ir/assets/farzad.png">
 <meta property="og:url" content="https://feris.ir/en/">
 <meta property="og:locale" content="en_US">
@@ -212,7 +212,9 @@ section{ margin-top: 46px; }
 footer{ text-align:center; padding: 30px 20px 10px; color: var(--text-faint); font-family: var(--font-mono); font-size: 11.5px; }
 
 /* ---- blog ---- */
-.post-card{ padding: 22px; margin-bottom: 14px; display:block; }
+.post-card{ padding: 0 0 22px; margin-bottom: 14px; display:block; overflow:hidden; }
+.post-card .post-thumb{ width:100%; aspect-ratio: 1200/630; object-fit:cover; margin-bottom: 16px; }
+.post-card .post-date, .post-card h3, .post-card .excerpt, .post-card .readmore{ margin-inline: 22px; }
 .post-card .post-date{ font-family: var(--font-mono); font-size: 11.5px; color: var(--text-faint); letter-spacing:0.03em; }
 .post-card h3{ font-family: var(--font-display); font-weight: 700; font-size: 18px; margin-top: 8px; }
 .post-card .excerpt{ margin-top: 8px; color: var(--text-muted); font-size: 14px; line-height: 1.7; }
@@ -221,8 +223,19 @@ footer{ text-align:center; padding: 30px 20px 10px; color: var(--text-faint); fo
 article.post{ padding: 28px; }
 article.post .post-date{ font-family: var(--font-mono); font-size: 12px; color: var(--text-faint); }
 article.post h1{ margin-top: 10px; font-size: clamp(26px, 6vw, 36px); }
+article.post .byline{ margin-top: 10px; font-size: 13px; color: var(--text-faint); }
+article.post .byline a{ color: var(--blob-cyan); }
+article.post .post-cover{ width:100%; aspect-ratio: 1200/630; object-fit:cover; border-radius: 18px; margin-top: 22px; border: 1px solid var(--glass-border); }
+.toc{ margin-top: 22px; padding: 18px 20px; }
+.toc-title{ font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--blob-cyan); margin-bottom: 10px; }
+.toc ol{ list-style: decimal; padding-inline-start: 20px; display:flex; flex-direction:column; gap: 6px; }
+.toc a{ color: var(--text-muted); font-size: 14px; }
+.toc a:hover{ color: var(--text); }
 article.post .body{ margin-top: 22px; color: var(--text-muted); line-height: 1.9; font-size: 15.5px; }
-article.post .body h3, article.post .body h4, article.post .body h5{ font-family: var(--font-display); color: var(--text); margin: 26px 0 10px; }
+article.post .body h2, article.post .body h3, article.post .body h4{ font-family: var(--font-display); color: var(--text); margin: 26px 0 10px; scroll-margin-top: 90px; }
+article.post .body h2{ font-size: 21px; }
+article.post .body h3{ font-size: 18px; }
+article.post .body h4{ font-size: 16px; }
 article.post .body p{ margin-bottom: 16px; }
 article.post .body ul{ margin: 0 0 16px; padding-inline-start: 22px; list-style: disc; }
 article.post .body ol{ margin: 0 0 16px; padding-inline-start: 22px; list-style: decimal; }

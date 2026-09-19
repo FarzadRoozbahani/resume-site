@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>5 Technical SEO Issues That Quietly Kill WordPress Rankings | Farzad Roozbahani</title>
+<title>5 Technical SEO Issues That Quietly Kill WordPress Rankings</title>
 <meta name="description" content="WordPress makes it easy to publish and just as easy to accumulate crawl and indexing problems nobody notices until traffic drops.">
 <meta name="theme-color" content="#070A12">
 <meta name="robots" content="index, follow">
@@ -14,9 +14,9 @@
 <link rel="sitemap" type="application/xml" href="/sitemap.xml">
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="5 Technical SEO Issues That Quietly Kill WordPress Rankings | Farzad Roozbahani">
+<meta property="og:title" content="5 Technical SEO Issues That Quietly Kill WordPress Rankings">
 <meta property="og:description" content="WordPress makes it easy to publish and just as easy to accumulate crawl and indexing problems nobody notices until traffic drops.">
-<meta property="og:image" content="https://feris.ir/assets/farzad.png">
+<meta property="og:image" content="https://feris.ir/assets/blog/technical-seo-issues-wordpress.svg">
 <meta property="og:url" content="https://feris.ir/en/blog/technical-seo-issues-wordpress/">
 <meta property="og:locale" content="en_US">
 <meta name="twitter:card" content="summary">
@@ -25,7 +25,31 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "5 Technical SEO Issues That Quietly Kill WordPress Rankings",
+  "description": "WordPress makes it easy to publish and just as easy to accumulate crawl and indexing problems nobody notices until traffic drops.",
+  "datePublished": "2026-08-29",
+  "dateModified": "2026-08-29",
+  "inLanguage": "en",
+  "author": {
+    "@type": "Person",
+    "name": "Farzad Roozbahani",
+    "url": "https://feris.ir/en/"
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "Farzad Roozbahani"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://feris.ir/en/blog/technical-seo-issues-wordpress/"
+  },
+  "image": "https://feris.ir/assets/blog/technical-seo-issues-wordpress.svg"
+}
+</script>
 <style>
 :root{
   --bg: #070A12;
@@ -154,7 +178,9 @@ section{ margin-top: 46px; }
 footer{ text-align:center; padding: 30px 20px 10px; color: var(--text-faint); font-family: var(--font-mono); font-size: 11.5px; }
 
 /* ---- blog ---- */
-.post-card{ padding: 22px; margin-bottom: 14px; display:block; }
+.post-card{ padding: 0 0 22px; margin-bottom: 14px; display:block; overflow:hidden; }
+.post-card .post-thumb{ width:100%; aspect-ratio: 1200/630; object-fit:cover; margin-bottom: 16px; }
+.post-card .post-date, .post-card h3, .post-card .excerpt, .post-card .readmore{ margin-inline: 22px; }
 .post-card .post-date{ font-family: var(--font-mono); font-size: 11.5px; color: var(--text-faint); letter-spacing:0.03em; }
 .post-card h3{ font-family: var(--font-display); font-weight: 700; font-size: 18px; margin-top: 8px; }
 .post-card .excerpt{ margin-top: 8px; color: var(--text-muted); font-size: 14px; line-height: 1.7; }
@@ -163,8 +189,19 @@ footer{ text-align:center; padding: 30px 20px 10px; color: var(--text-faint); fo
 article.post{ padding: 28px; }
 article.post .post-date{ font-family: var(--font-mono); font-size: 12px; color: var(--text-faint); }
 article.post h1{ margin-top: 10px; font-size: clamp(26px, 6vw, 36px); }
+article.post .byline{ margin-top: 10px; font-size: 13px; color: var(--text-faint); }
+article.post .byline a{ color: var(--blob-cyan); }
+article.post .post-cover{ width:100%; aspect-ratio: 1200/630; object-fit:cover; border-radius: 18px; margin-top: 22px; border: 1px solid var(--glass-border); }
+.toc{ margin-top: 22px; padding: 18px 20px; }
+.toc-title{ font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--blob-cyan); margin-bottom: 10px; }
+.toc ol{ list-style: decimal; padding-inline-start: 20px; display:flex; flex-direction:column; gap: 6px; }
+.toc a{ color: var(--text-muted); font-size: 14px; }
+.toc a:hover{ color: var(--text); }
 article.post .body{ margin-top: 22px; color: var(--text-muted); line-height: 1.9; font-size: 15.5px; }
-article.post .body h3, article.post .body h4, article.post .body h5{ font-family: var(--font-display); color: var(--text); margin: 26px 0 10px; }
+article.post .body h2, article.post .body h3, article.post .body h4{ font-family: var(--font-display); color: var(--text); margin: 26px 0 10px; scroll-margin-top: 90px; }
+article.post .body h2{ font-size: 21px; }
+article.post .body h3{ font-size: 18px; }
+article.post .body h4{ font-size: 16px; }
 article.post .body p{ margin-bottom: 16px; }
 article.post .body ul{ margin: 0 0 16px; padding-inline-start: 22px; list-style: disc; }
 article.post .body ol{ margin: 0 0 16px; padding-inline-start: 22px; list-style: decimal; }
@@ -189,17 +226,20 @@ article.post .body code{ background: rgba(255,255,255,0.08); padding: 2px 6px; b
 <article class="post glass">
 <div class="post-date">2026-08-29</div>
 <h1>5 Technical SEO Issues That Quietly Kill WordPress Rankings</h1>
+<div class="byline">Written by <a href="/en/">Farzad Roozbahani</a> — SEO Specialist &amp; Developer</div>
+<img class="post-cover" src="/assets/blog/technical-seo-issues-wordpress.svg" alt="5 Technical SEO Issues That Quietly Kill WordPress Rankings" width="1200" height="630">
+<nav class="toc glass-light" aria-label="Table of contents"><div class="toc-title">Table of contents</div><ol><li><a href="#s1">1. Tag and category archives competing with your real content</a></li><li><a href="#s2">2. Canonical tags that point to the wrong place</a></li><li><a href="#s3">3. A sitemap that isn&#x27;t wired up properly</a></li><li><a href="#s4">4. Crawl budget wasted on pages that shouldn&#x27;t be crawled</a></li><li><a href="#s5">5. Redirect chains from old migrations</a></li></ol></nav>
 <div class="body"><p>WordPress is friendly to write in and unfriendly to leave unattended. Most of the technical SEO problems I see on client sites aren't dramatic — no plugin crashed, nothing looks broken in the browser. They just quietly waste crawl budget and confuse search engines about which page should actually rank. Here are the five I check first on every new site.</p>
-<h4>1. Tag and category archives competing with your real content</h4>
+<h2 id="s1">1. Tag and category archives competing with your real content</h2>
 <p>WordPress generates an archive page for every tag and category by default. On a blog with loose tagging habits, that can mean dozens of thin, near-duplicate pages indexed alongside your actual articles — all fighting each other for the same keywords. Decide early whether tag archives earn their place in the index. If they don't add unique value, <code>noindex</code> them in your SEO plugin rather than leaving them to compete with pages that matter.</p>
-<h4>2. Canonical tags that point to the wrong place</h4>
+<h2 id="s2">2. Canonical tags that point to the wrong place</h2>
 <p>This one is sneaky because it's invisible until you check <code>view-source</code>. Page builders, some caching plugins, and multilingual setups can all quietly rewrite or duplicate canonical tags — sending Google to index the wrong URL, or splitting ranking signals between <code>http</code>/<code>https</code>, <code>www</code>/non-<code>www</code>, or a staging URL that never got cleaned up. Crawl the site with a tool like Screaming Frog after any theme or plugin change and check that every canonical tag actually points to itself, not somewhere else.</p>
-<h4>3. A sitemap that isn't wired up properly</h4>
+<h2 id="s3">3. A sitemap that isn't wired up properly</h2>
 <p>A sitemap doesn't help if it isn't in <code>robots.txt</code>, isn't submitted in Search Console, or lists URLs that 404. I've seen sites running for years with a sitemap plugin installed and no one having ever pointed Google at it. Check Search Console's Sitemaps report for errors — not just whether it says "Success," but whether the <em>indexed</em> count roughly matches the <em>submitted</em> count.</p>
-<h4>4. Crawl budget wasted on pages that shouldn't be crawled</h4>
+<h2 id="s4">4. Crawl budget wasted on pages that shouldn't be crawled</h2>
 <p>Author archives on a single-author blog, <code>?replytocom</code> comment-reply URLs, internal search result pages, feed URLs — none of these need to be crawled, and on a large site they can genuinely compete with your real pages for crawl budget. A few lines in <code>robots.txt</code> fix most of it:</p>
 <p>``<code> Disallow: /?replytocom= Disallow: /?s= Disallow: /author/ </code>``</p>
-<h4>5. Redirect chains from old migrations</h4>
+<h2 id="s5">5. Redirect chains from old migrations</h2>
 <p>Every domain migration, HTTP-to-HTTPS switch, or URL structure change that didn't get cleaned up leaves a redirect behind. Individually harmless — but stack three or four of them on the same URL and you're burning crawl budget and diluting link equity on every single request. Run a redirect-chain check after any migration and flatten anything more than one hop.</p>
 <p>None of these require touching code most of the time — they need someone willing to actually crawl the site, read the reports, and fix what they find instead of assuming the SEO plugin is handling it. That's most of the job.</p></div>
 </article>

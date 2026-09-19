@@ -118,17 +118,35 @@ def _inline(text):
     return text
 
 
+def slugify_anchor(text, index):
+    """A stable, ASCII-safe anchor id for a heading (Persian headings don't
+    survive URL-fragment round-tripping reliably across browsers, so we key
+    anchors by position rather than transliterating the heading text)."""
+    return "s{}".format(index)
+
+
 def markdown_to_html(body):
+    """Render the post body to HTML and also return its table of contents
+    (the list of ## headings with the anchor ids assigned to them), so the
+    caller can render a "table of contents" block that links into the post."""
     blocks = re.split(r"\n\s*\n", body.strip())
     out = []
+    toc = []
+    heading_count = 0
     for block in blocks:
         block = block.strip()
         if not block:
             continue
         m = re.match(r"^(#{1,3})\s+(.*)", block)
         if m:
-            level = len(m.group(1)) + 2  # start headings at h3 inside a post
-            out.append("<h{0}>{1}</h{0}>".format(level, _inline(m.group(2).strip())))
+            # keep the heading hierarchy unbroken: the post's H1 is its title,
+            # so a post's own "##" headings become H2 (not H3/H4 skipping a level).
+            level = max(2, len(m.group(1)))
+            heading_count += 1
+            anchor = slugify_anchor(m.group(2).strip(), heading_count)
+            text = m.group(2).strip()
+            out.append('<h{0} id="{2}">{1}</h{0}>'.format(level, _inline(text), anchor))
+            toc.append({"anchor": anchor, "text": text})
             continue
         lines = block.splitlines()
         if all(re.match(r"^-\s+", l.strip()) for l in lines):
@@ -141,7 +159,7 @@ def markdown_to_html(body):
             continue
         joined = " ".join(l.strip() for l in lines)
         out.append("<p>{}</p>".format(_inline(joined)))
-    return "\n".join(out)
+    return "\n".join(out), toc
 
 
 # ------------------------------------------------------------------- icons --
@@ -311,7 +329,9 @@ section{ margin-top: 46px; }
 footer{ text-align:center; padding: 30px 20px 10px; color: var(--text-faint); font-family: var(--font-mono); font-size: 11.5px; }
 
 /* ---- blog ---- */
-.post-card{ padding: 22px; margin-bottom: 14px; display:block; }
+.post-card{ padding: 0 0 22px; margin-bottom: 14px; display:block; overflow:hidden; }
+.post-card .post-thumb{ width:100%; aspect-ratio: 1200/630; object-fit:cover; margin-bottom: 16px; }
+.post-card .post-date, .post-card h3, .post-card .excerpt, .post-card .readmore{ margin-inline: 22px; }
 .post-card .post-date{ font-family: var(--font-mono); font-size: 11.5px; color: var(--text-faint); letter-spacing:0.03em; }
 .post-card h3{ font-family: var(--font-display); font-weight: 700; font-size: 18px; margin-top: 8px; }
 .post-card .excerpt{ margin-top: 8px; color: var(--text-muted); font-size: 14px; line-height: 1.7; }
@@ -320,8 +340,19 @@ footer{ text-align:center; padding: 30px 20px 10px; color: var(--text-faint); fo
 article.post{ padding: 28px; }
 article.post .post-date{ font-family: var(--font-mono); font-size: 12px; color: var(--text-faint); }
 article.post h1{ margin-top: 10px; font-size: clamp(26px, 6vw, 36px); }
+article.post .byline{ margin-top: 10px; font-size: 13px; color: var(--text-faint); }
+article.post .byline a{ color: var(--blob-cyan); }
+article.post .post-cover{ width:100%; aspect-ratio: 1200/630; object-fit:cover; border-radius: 18px; margin-top: 22px; border: 1px solid var(--glass-border); }
+.toc{ margin-top: 22px; padding: 18px 20px; }
+.toc-title{ font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--blob-cyan); margin-bottom: 10px; }
+.toc ol{ list-style: decimal; padding-inline-start: 20px; display:flex; flex-direction:column; gap: 6px; }
+.toc a{ color: var(--text-muted); font-size: 14px; }
+.toc a:hover{ color: var(--text); }
 article.post .body{ margin-top: 22px; color: var(--text-muted); line-height: 1.9; font-size: 15.5px; }
-article.post .body h3, article.post .body h4, article.post .body h5{ font-family: var(--font-display); color: var(--text); margin: 26px 0 10px; }
+article.post .body h2, article.post .body h3, article.post .body h4{ font-family: var(--font-display); color: var(--text); margin: 26px 0 10px; scroll-margin-top: 90px; }
+article.post .body h2{ font-size: 21px; }
+article.post .body h3{ font-size: 18px; }
+article.post .body h4{ font-size: 16px; }
 article.post .body p{ margin-bottom: 16px; }
 article.post .body ul{ margin: 0 0 16px; padding-inline-start: 22px; list-style: disc; }
 article.post .body ol{ margin: 0 0 16px; padding-inline-start: 22px; list-style: decimal; }
@@ -346,7 +377,9 @@ STRINGS = {
         "interests": "Beyond work", "contact": "Get in touch", "email_btn": "Email me",
         "blog_nav": "Blog", "resume_nav": "Resume", "blog_title": "Blog",
         "blog_index_title": "Blog — {name}", "back_to_blog": "← Back to blog",
-        "site_desc": "Farzad Roozbahani is an SEO specialist and developer based in Tehran, working with clients including RugMaster (Australia) on technical SEO, keyword strategy, and WordPress development.",
+        "site_desc": "Farzad Roozbahani is an SEO specialist and WordPress developer in Tehran, helping businesses like RugMaster grow through technical SEO and keyword strategy.",
+        "toc": "Table of contents",
+        "written_by": "Written by",
     },
     "fa": {
         "about": "درباره من", "experience": "سوابق کاری", "skills": "مهارت‌ها",
@@ -354,14 +387,16 @@ STRINGS = {
         "interests": "بیرون از کار", "contact": "در تماس باشیم", "email_btn": "ایمیل بزن",
         "blog_nav": "بلاگ", "resume_nav": "رزومه", "blog_title": "بلاگ",
         "blog_index_title": "بلاگ — {name}", "back_to_blog": "← بازگشت به بلاگ",
-        "site_desc": "فرزاد روزبهانی متخصص سئو و توسعه‌دهنده مستقر در تهران است که با مشتریانی از جمله رگ‌مستر (استرالیا) روی سئوی فنی، استراتژی کلمات کلیدی و توسعه‌ی وردپرس همکاری می‌کند.",
+        "site_desc": "فرزاد روزبهانی متخصص سئو و توسعه‌دهنده‌ی وردپرس در تهران است که به کسب‌وکارهایی مثل رگ‌مستر در رشد از طریق سئوی فنی و استراتژی کلمات کلیدی کمک می‌کند.",
+        "toc": "فهرست محتوا",
+        "written_by": "نویسنده:",
     },
 }
 
 OTHER_LANG = {"en": "fa", "fa": "en"}
 
 
-def page_shell(lang, title, description, canonical_path, body, extra_head="", nav_active="resume"):
+def page_shell(lang, title, description, canonical_path, body, extra_head="", nav_active="resume", og_image=None):
     other = OTHER_LANG[lang]
     dir_attr = "rtl" if lang == "fa" else "ltr"
     s = STRINGS[lang]
@@ -392,7 +427,7 @@ def page_shell(lang, title, description, canonical_path, body, extra_head="", na
 <meta property="og:type" content="website">
 <meta property="og:title" content="{title}">
 <meta property="og:description" content="{description}">
-<meta property="og:image" content="{site}/assets/farzad.png">
+<meta property="og:image" content="{og_image}">
 <meta property="og:url" content="{canonical}">
 <meta property="og:locale" content="{locale}">
 <meta name="twitter:card" content="summary">
@@ -417,6 +452,7 @@ def page_shell(lang, title, description, canonical_path, body, extra_head="", na
         canonical=canonical, alt_en=alt_en, alt_fa=alt_fa, site=SITE_URL,
         locale=("fa_IR" if lang == "fa" else "en_US"), font_link=FONT_LINK[lang],
         extra_head=extra_head, css=CSS, name="Farzad Roozbahani", nav=nav_html, body=body,
+        og_image=(og_image if og_image else "{}/assets/farzad.png".format(SITE_URL)),
     )
 
 
@@ -556,12 +592,20 @@ def load_posts(lang):
         with open(path, encoding="utf-8") as f:
             raw = f.read()
         fm, body = parse_frontmatter(raw)
+        body_html, toc = markdown_to_html(body)
+        # default cover image: one hand-drawn SVG per slug, shared across languages
+        # (assets/blog/<slug>.svg); a post can override with an explicit `image:` field
+        default_image = "/assets/blog/{}.svg".format(slug)
+        image_path = fm.get("image", default_image)
+        has_image = fm.get("image") is not None or os.path.isfile(os.path.join(ROOT, default_image.lstrip("/")))
         posts.append({
             "slug": slug,
             "title": fm.get("title", slug),
             "date": fm.get("date", ""),
             "excerpt": fm.get("excerpt", ""),
-            "body_html": markdown_to_html(body),
+            "body_html": body_html,
+            "toc": toc,
+            "image": image_path if has_image else None,
         })
     posts.sort(key=lambda p: p["date"], reverse=True)
     return posts
@@ -569,18 +613,24 @@ def load_posts(lang):
 
 def render_blog_index(lang, posts, hero_name):
     s = STRINGS[lang]
+    h1_text = s["blog_index_title"].format(name=hero_name)
     body = ['<main class="wrap">', '<section style="padding-top:26px">',
-            '<div class="section-head"><h2 style="font-size:28px">{}</h2></div>'.format(s["blog_title"])]
+            '<div class="section-head"><h1 style="font-family:var(--font-display);font-weight:700;font-size:28px">{}</h1></div>'.format(html.escape(h1_text))]
     if not posts:
         body.append('<div class="card glass"><p class="muted">{}</p></div>'.format(
             "No posts yet." if lang == "en" else "هنوز پستی منتشر نشده."))
     for p in posts:
+        thumb = ""
+        if p.get("image"):
+            thumb = '<img class="post-thumb" src="{src}" alt="{alt}" width="1200" height="630" loading="lazy">'.format(
+                src=p["image"], alt=html.escape(p["title"]))
         body.append(
             '<a class="post-card glass" href="/{lang}/blog/{slug}/">'
+            '{thumb}'
             '<div class="post-date">{date}</div><h3>{title}</h3>'
             '<p class="excerpt">{excerpt}</p>'
             '<span class="readmore">{more}</span></a>'.format(
-                lang=lang, slug=p["slug"], date=html.escape(p["date"]),
+                lang=lang, slug=p["slug"], thumb=thumb, date=html.escape(p["date"]),
                 title=html.escape(p["title"]), excerpt=html.escape(p["excerpt"]),
                 more=("Read more →" if lang == "en" else "ادامه مطلب ←"))
         )
@@ -590,8 +640,45 @@ def render_blog_index(lang, posts, hero_name):
     return page_shell(lang, title, s["site_desc"], "/{}/blog/".format(lang), "\n".join(body), nav_active="blog")
 
 
-def render_blog_post(lang, post, hero_name):
+def build_article_schema(lang, post, hero_name, canonical_url):
+    import json
+    schema = {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": post["title"],
+        "description": post["excerpt"],
+        "datePublished": post["date"],
+        "dateModified": post["date"],
+        "inLanguage": lang,
+        "author": {"@type": "Person", "name": hero_name, "url": "{}/{}/".format(SITE_URL, lang)},
+        "publisher": {"@type": "Person", "name": hero_name},
+        "mainEntityOfPage": {"@type": "WebPage", "@id": canonical_url},
+    }
+    if post.get("image"):
+        schema["image"] = SITE_URL + post["image"]
+    return json.dumps(schema, indent=2, ensure_ascii=False)
+
+
+def render_toc(toc, s):
+    if len(toc) < 2:
+        return ""
+    items = "".join('<li><a href="#{anchor}">{text}</a></li>'.format(
+        anchor=item["anchor"], text=html.escape(item["text"])) for item in toc)
+    return '<nav class="toc glass-light" aria-label="{label}"><div class="toc-title">{label}</div><ol>{items}</ol></nav>'.format(
+        label=s["toc"], items=items)
+
+
+def render_blog_post(lang, post, hero_name, hero_eyebrow=""):
     s = STRINGS[lang]
+    byline = '<div class="byline">{label} <a href="/{lang}/">{name}</a>{sep}{eyebrow}</div>'.format(
+        label=s["written_by"], lang=lang, name=html.escape(hero_name),
+        sep=" — " if hero_eyebrow else "", eyebrow=html.escape(hero_eyebrow))
+    cover = ""
+    if post.get("image"):
+        # the featured image sits right under the H1, so it is very likely the
+        # page's LCP element — it is loaded eagerly (no loading="lazy") on purpose.
+        cover = '<img class="post-cover" src="{src}" alt="{alt}" width="1200" height="630">'.format(
+            src=post["image"], alt=html.escape(post["title"]))
     body = [
         '<main class="wrap">',
         '<section style="padding-top:26px">',
@@ -599,14 +686,23 @@ def render_blog_post(lang, post, hero_name):
         '<article class="post glass">',
         '<div class="post-date">{}</div>'.format(html.escape(post["date"])),
         '<h1>{}</h1>'.format(html.escape(post["title"])),
+        byline,
+        cover,
+        render_toc(post.get("toc", []), s),
         '<div class="body">{}</div>'.format(post["body_html"]),
         '</article>',
         '</section>',
         '</main>',
     ]
-    title = "{} | {}".format(post["title"], hero_name)
+    # no " | Farzad Roozbahani" suffix here: post titles already run close to
+    # the 50-60 char guideline on their own, and appending the brand name
+    # would push most of them well past it.
+    title = post["title"]
     canonical = "/{}/blog/{}/".format(lang, post["slug"])
-    return page_shell(lang, title, post["excerpt"] or s["site_desc"], canonical, "\n".join(body), nav_active="blog")
+    og_image = SITE_URL + post["image"] if post.get("image") else None
+    schema_json = build_article_schema(lang, post, hero_name, SITE_URL + canonical)
+    extra_head = '<script type="application/ld+json">\n{}\n</script>'.format(schema_json)
+    return page_shell(lang, title, post["excerpt"] or s["site_desc"], canonical, "\n".join(body), extra_head, nav_active="blog", og_image=og_image)
 
 
 # --------------------------------------------------------------- redirect --
@@ -689,7 +785,7 @@ def main():
         sitemap_urls.append({"loc": "{}/{}/blog/".format(SITE_URL, lang), "lastmod": today, "changefreq": "weekly", "priority": "0.8"})
 
         for post in posts:
-            write("{}/blog/{}/index.html".format(lang, post["slug"]), render_blog_post(lang, post, hero.get("name", "")))
+            write("{}/blog/{}/index.html".format(lang, post["slug"]), render_blog_post(lang, post, hero.get("name", ""), hero.get("eyebrow", "")))
             sitemap_urls.append({"loc": "{}/{}/blog/{}/".format(SITE_URL, lang, post["slug"]), "lastmod": post["date"] or today, "changefreq": "monthly", "priority": "0.6"})
 
     write("index.html", render_root_redirect())

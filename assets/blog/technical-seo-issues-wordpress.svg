@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-labelledby="t">
+<title id="t">Technical SEO diagnostics illustration</title>
+<defs>
+  <radialGradient id="bg1" cx="15%" cy="10%" r="60%"><stop offset="0%" stop-color="#22D3EE" stop-opacity="0.55"/><stop offset="100%" stop-color="#22D3EE" stop-opacity="0"/></radialGradient>
+  <radialGradient id="bg2" cx="90%" cy="90%" r="60%"><stop offset="0%" stop-color="#6366F1" stop-opacity="0.55"/><stop offset="100%" stop-color="#6366F1" stop-opacity="0"/></radialGradient>
+  <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#ffffff" stop-opacity="0.16"/><stop offset="100%" stop-color="#ffffff" stop-opacity="0.04"/></linearGradient>
+  <filter id="blur1"><feGaussianBlur stdDeviation="60"/></filter>
+</defs>
+<rect width="1200" height="630" fill="#070A12"/>
+<circle cx="180" cy="80" r="260" fill="url(#bg1)" filter="url(#blur1)"/>
+<circle cx="1060" cy="560" r="300" fill="url(#bg2)" filter="url(#blur1)"/>
+<rect x="440" y="165" width="320" height="300" rx="32" fill="url(#glass)" stroke="#ffffff" stroke-opacity="0.22" stroke-width="1.5"/>
+<g transform="translate(600,315)" stroke="#22D3EE" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" fill="none">
+  <path d="M-70,-10 a40,40 0 1 1 45,45" />
+  <path d="M-25,35 L-70,80" stroke="#F3F6FB"/>
+  <circle cx="-70" cy="-40" r="14" fill="#070A12" stroke="#6366F1"/>
+</g>
+<g transform="translate(600,315)" fill="#34D399">
+  <circle cx="70" cy="-70" r="7"/>
+  <circle cx="90" cy="-40" r="5"/>
+  <circle cx="55" cy="-95" r="4"/>
+</g>
+</svg>

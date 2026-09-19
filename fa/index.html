@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>فرزاد روزبهانی | متخصص سئو و توسعه‌دهنده</title>
-<meta name="description" content="فرزاد روزبهانی متخصص سئو و توسعه‌دهنده مستقر در تهران است که با مشتریانی از جمله رگ‌مستر (استرالیا) روی سئوی فنی، استراتژی کلمات کلیدی و توسعه‌ی وردپرس همکاری می‌کند.">
+<meta name="description" content="فرزاد روزبهانی متخصص سئو و توسعه‌دهنده‌ی وردپرس در تهران است که به کسب‌وکارهایی مثل رگ‌مستر در رشد از طریق سئوی فنی و استراتژی کلمات کلیدی کمک می‌کند.">
 <meta name="theme-color" content="#070A12">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://feris.ir/fa/">
@@ -15,7 +15,7 @@
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="فرزاد روزبهانی | متخصص سئو و توسعه‌دهنده">
-<meta property="og:description" content="فرزاد روزبهانی متخصص سئو و توسعه‌دهنده مستقر در تهران است که با مشتریانی از جمله رگ‌مستر (استرالیا) روی سئوی فنی، استراتژی کلمات کلیدی و توسعه‌ی وردپرس همکاری می‌کند.">
+<meta property="og:description" content="فرزاد روزبهانی متخصص سئو و توسعه‌دهنده‌ی وردپرس در تهران است که به کسب‌وکارهایی مثل رگ‌مستر در رشد از طریق سئوی فنی و استراتژی کلمات کلیدی کمک می‌کند.">
 <meta property="og:image" content="https://feris.ir/assets/farzad.png">
 <meta property="og:url" content="https://feris.ir/fa/">
 <meta property="og:locale" content="fa_IR">
@@ -46,7 +46,7 @@
   },
   "alumniOf": {
     "@type": "EducationalOrganization",
-    "name": "دبیرستان اوینی"
+    "name": "دبیرستان آوینی"
   },
   "knowsLanguage": [
     "fa",
@@ -212,7 +212,9 @@ section{ margin-top: 46px; }
 footer{ text-align:center; padding: 30px 20px 10px; color: var(--text-faint); font-family: var(--font-mono); font-size: 11.5px; }
 
 /* ---- blog ---- */
-.post-card{ padding: 22px; margin-bottom: 14px; display:block; }
+.post-card{ padding: 0 0 22px; margin-bottom: 14px; display:block; overflow:hidden; }
+.post-card .post-thumb{ width:100%; aspect-ratio: 1200/630; object-fit:cover; margin-bottom: 16px; }
+.post-card .post-date, .post-card h3, .post-card .excerpt, .post-card .readmore{ margin-inline: 22px; }
 .post-card .post-date{ font-family: var(--font-mono); font-size: 11.5px; color: var(--text-faint); letter-spacing:0.03em; }
 .post-card h3{ font-family: var(--font-display); font-weight: 700; font-size: 18px; margin-top: 8px; }
 .post-card .excerpt{ margin-top: 8px; color: var(--text-muted); font-size: 14px; line-height: 1.7; }
@@ -221,8 +223,19 @@ footer{ text-align:center; padding: 30px 20px 10px; color: var(--text-faint); fo
 article.post{ padding: 28px; }
 article.post .post-date{ font-family: var(--font-mono); font-size: 12px; color: var(--text-faint); }
 article.post h1{ margin-top: 10px; font-size: clamp(26px, 6vw, 36px); }
+article.post .byline{ margin-top: 10px; font-size: 13px; color: var(--text-faint); }
+article.post .byline a{ color: var(--blob-cyan); }
+article.post .post-cover{ width:100%; aspect-ratio: 1200/630; object-fit:cover; border-radius: 18px; margin-top: 22px; border: 1px solid var(--glass-border); }
+.toc{ margin-top: 22px; padding: 18px 20px; }
+.toc-title{ font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--blob-cyan); margin-bottom: 10px; }
+.toc ol{ list-style: decimal; padding-inline-start: 20px; display:flex; flex-direction:column; gap: 6px; }
+.toc a{ color: var(--text-muted); font-size: 14px; }
+.toc a:hover{ color: var(--text); }
 article.post .body{ margin-top: 22px; color: var(--text-muted); line-height: 1.9; font-size: 15.5px; }
-article.post .body h3, article.post .body h4, article.post .body h5{ font-family: var(--font-display); color: var(--text); margin: 26px 0 10px; }
+article.post .body h2, article.post .body h3, article.post .body h4{ font-family: var(--font-display); color: var(--text); margin: 26px 0 10px; scroll-margin-top: 90px; }
+article.post .body h2{ font-size: 21px; }
+article.post .body h3{ font-size: 18px; }
+article.post .body h4{ font-size: 16px; }
 article.post .body p{ margin-bottom: 16px; }
 article.post .body ul{ margin: 0 0 16px; padding-inline-start: 22px; list-style: disc; }
 article.post .body ol{ margin: 0 0 16px; padding-inline-start: 22px; list-style: decimal; }
@@ -253,9 +266,9 @@ article.post .body code{ background: rgba(255,255,255,0.08); padding: 2px 6px; b
 <section id="about"><div class="section-head"><span class="num">01</span><h2>درباره من</h2></div>
 <div class="card glass"><p>در سال‌های اخیر به دنیای دیجیتال مارکتینگ علاقه‌مند شدم، مخصوصاً حوزه‌ی سئو. یادگیری سئو رو از منابع مختلف شروع کردم و کم‌کم اولین پروژه‌ی موفقم رو راه انداختم. قبل از اون در زمینه‌ی گرافیک و موشن کار می‌کردم، برای همین درک خوبی از ابزارها و تکنیک‌های این حوزه هم دارم. علاوه بر این، مدتی رو صرف یادگیری و استفاده از زبان‌های برنامه‌نویسی مثل پایتون و PHP کرده‌ام.</p></div></section>
 <section id="experience"><div class="section-head"><span class="num">02</span><h2>سوابق کاری</h2></div><div class="timeline">
-<div class="job glass"><div class="role">متخصص سئو</div><div class="org">RugMaster Pty Ltd</div><div class="period">مرداد ۱۴۰۱ — اکنون</div><p class="desc muted">رگ‌مستر واردکننده‌ی انواع فرش و رانر دستباف به استرالیاست. به‌عنوان متخصص سئو و دیجیتال مارکتینگ، افتخار همکاری با آن‌ها را داشته‌ام.</p></div>
+<div class="job glass"><div class="role">متخصص سئو</div><div class="org">RugMaster Pty Ltd</div><div class="period">مرداد ۱۴۰۱ — اکنون</div><p class="desc muted">رگ‌مستر واردکننده‌ی انواع فرش و رانر دستباف به استرالیاست. به‌عنوان متخصص سئو و دیجیتال مارکتینگ، مسئولیت رشد ارگانیک و بهینه‌سازی فنی سایتشون رو بر عهده دارم.</p></div>
 <div class="job glass"><div class="role">توسعه‌دهنده‌ی وردپرس</div><div class="org">PCMOD</div><div class="period">آبان — دی ۱۴۰۰</div><p class="desc muted">PCMOD شرکتی است که انواع سخت‌افزار اختصاصی برای گیمرها و کاربران عادی طراحی و پیاده‌سازی می‌کند؛ برای مدت کوتاهی با آن‌ها همکاری کردم.</p></div>
-<div class="job glass"><div class="role">توسعه‌دهنده‌ی وردپرس</div><div class="org">Calistu Trading</div><div class="period">تیر — آبان ۱۴۰۰</div><p class="desc muted">کالیستو شرکتی برای طراحی و ساخت ابزارهای دیجیتال و رفع نیازهای کسب‌وکار در امارات بود؛ جایی که در بخش وردپرس آن کار و یادگیری می‌کردم.</p></div>
+<div class="job glass"><div class="role">توسعه‌دهنده‌ی وردپرس</div><div class="org">Calistu Trading</div><div class="period">تیر — آبان ۱۴۰۰</div><p class="desc muted">کالیستو شرکتی برای طراحی و ساخت ابزارهای دیجیتال و رفع نیازهای کسب‌وکار در امارات بود؛ جایی که در تیم وردپرس آن، روی توسعه و شخصی‌سازی قالب‌ها و افزونه‌ها برای پروژه‌های مشتریان کار می‌کردم.</p></div>
 <div class="job glass"><div class="role">کارآموز وردپرس</div><div class="org">توسعه‌ی ارتباط رامان</div><div class="period">دی ۱۳۹۹ — فروردین ۱۴۰۰</div><p class="desc muted">رامان شرکتی بود که مسیر شغلی من را آغاز کرد؛ آنجا به‌عنوان کارآموز وردپرس شروع به کار کردم و کمک زیادی به رشدم کرد.</p></div>
 </div></section>
 <section id="skills"><div class="section-head"><span class="num">03</span><h2>مهارت‌ها</h2></div><div class="card glass">
@@ -302,7 +315,7 @@ article.post .body code{ background: rgba(255,255,255,0.08); padding: 2px 6px; b
 <span class="chip glass-light">انطباق‌پذیری بین حوزه‌های مختلف</span>
 </div></div></section>
 <section id="education"><div class="section-head"><span class="num">05</span><h2>تحصیلات</h2></div>
-<div class="card glass"><div class="edu-title">دبیرستان اوینی</div><div class="edu-sub">دیپلم تصویرسازی و جلوه‌های ویژه‌ی ویدیویی</div><p style="margin-top:10px">آموزش عملی نرم‌افزارهای تصویرسازی و جلوه‌های ویژه‌ی ویدیویی، از جمله افترافکت، ایلاستریتور و فتوشاپ.</p></div>
+<div class="card glass"><div class="edu-title">دبیرستان آوینی</div><div class="edu-sub">دیپلم تصویرسازی و جلوه‌های ویژه‌ی رایانه‌ای</div><p style="margin-top:10px">آموزش عملی نرم‌افزارهای تصویرسازی و جلوه‌های ویژه‌ی رایانه‌ای، از جمله افترافکت، ایلاستریتور و فتوشاپ.</p></div>
 </section>
 <section id="languages"><div class="section-head"><span class="num">06</span><h2>زبان‌ها</h2></div><div class="langs">
 <div class="lang-card glass"><div class="name">فارسی</div><div class="level">زبان مادری</div></div>
