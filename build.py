@@ -814,6 +814,64 @@ def render_root_redirect():
 </html>""".format(site=SITE_URL, matomo=MATOMO_SNIPPET)
 
 
+# ----------------------------------------------------------------- llms --
+
+def build_llms_txt(en_sections, en_hero, posts_by_lang):
+    """llmstxt.org-style summary, regenerated at build time from the same
+    parsed content and post lists as the rest of the site, so it can't
+    drift out of sync the way a hand-maintained llms.txt would."""
+    skills_lines = []
+    for g in split_subsections(en_sections.get("skills", "")):
+        skills_lines.append("{}: {}.".format(g["header"], g["body"]))
+
+    contact_kv, _ = parse_key_values(en_sections.get("contact", ""))
+
+    lines = []
+    lines.append("# {}".format(en_hero.get("name", "")))
+    lines.append("")
+    lines.append("> {}".format(en_hero.get("eyebrow", "")))
+    lines.append("")
+    lines.append(en_sections.get("about", "").strip())
+    lines.append("")
+    lines.append("The site is served in two languages at separate URLs: English under /en/, "
+                 "Persian (فارسی) under /fa/. The root URL (/) redirects visitors to their "
+                 "browser-preferred language.")
+    lines.append("")
+    lines.append("## Pages")
+    lines.append("")
+    lines.append("- [English resume]({0}/en/): Full profile — about, work experience, skills, "
+                 "soft skills, education, languages, interests, and contact details.".format(SITE_URL))
+    lines.append("- [Persian resume]({0}/fa/): همان محتوا به فارسی.".format(SITE_URL))
+    lines.append("- [English blog]({0}/en/blog/): Articles and notes.".format(SITE_URL))
+    lines.append("- [Persian blog]({0}/fa/blog/): مقالات و یادداشت‌ها به فارسی.".format(SITE_URL))
+    lines.append("")
+    lines.append("## Skills")
+    lines.append("")
+    for line in skills_lines:
+        lines.append(line)
+    lines.append("")
+
+    for lang, label in (("en", "Latest posts (English)"), ("fa", "آخرین پست‌ها (فارسی)")):
+        posts = posts_by_lang.get(lang, [])
+        if not posts:
+            continue
+        lines.append("## {}".format(label))
+        lines.append("")
+        for p in posts:
+            lines.append("- [{title}]({url}): {excerpt}".format(
+                title=p["title"], url="{}/{}/blog/{}/".format(SITE_URL, lang, p["slug"]), excerpt=p["excerpt"]))
+        lines.append("")
+
+    lines.append("## Contact")
+    lines.append("")
+    if contact_kv.get("email"):
+        lines.append("- Email: {}".format(contact_kv["email"]))
+    if contact_kv.get("location"):
+        lines.append("- Location: {}".format(contact_kv["location"]))
+    lines.append("")
+    return "\n".join(lines)
+
+
 # -------------------------------------------------------------- sitemap --
 
 def build_sitemap(urls):
@@ -838,6 +896,8 @@ def write(path, content):
 def main():
     today = date.today().isoformat()
     sitemap_urls = [{"loc": SITE_URL + "/", "lastmod": today, "changefreq": "yearly", "priority": "0.5"}]
+    posts_by_lang = {}
+    en_sections, en_hero = None, None
 
     for lang in ("en", "fa"):
         with open(os.path.join(ROOT, "content", lang, "site.md"), encoding="utf-8") as f:
@@ -852,6 +912,9 @@ def main():
             shutil.rmtree(blog_dir)
 
         posts = load_posts(lang)
+        posts_by_lang[lang] = posts
+        if lang == "en":
+            en_sections, en_hero = sections, hero
 
         write("{}/index.html".format(lang), render_resume(lang, sections, posts))
         sitemap_urls.append({"loc": "{}/{}/".format(SITE_URL, lang), "lastmod": today, "changefreq": "monthly", "priority": "1.0"})
@@ -865,6 +928,7 @@ def main():
 
     write("index.html", render_root_redirect())
     write("sitemap.xml", build_sitemap(sitemap_urls))
+    write("llms.txt", build_llms_txt(en_sections, en_hero, posts_by_lang))
 
     # keep Jekyll out of the way — this is a hand-built static site
     write(".nojekyll", "")

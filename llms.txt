@@ -1,8 +1,8 @@
 # Farzad Roozbahani
 
-> SEO Specialist & Developer based in Tehran, Iran. Bilingual (English/Persian) resume, portfolio, and blog.
+> SEO Specialist & Developer
 
-Farzad Roozbahani is an SEO specialist and developer. He currently works with RugMaster Pty Ltd (an Australian handmade rug and runner importer) managing SEO and digital marketing end to end — keyword strategy, technical audits, and content. His background includes WordPress development (PCMOD, Calistu Trading, Tosee Ertebat Ramaan) and earlier training in graphic design and motion (Illustration and Video Special Effects, Avini High School). He also writes Python and works with Arduino/C++.
+In recent years, I have developed an interest in the world of digital marketing, especially in the field of SEO. I started studying and learning about SEO from various sources, and gradually launched my first successful SEO project. Having previously worked in graphic design and motion, I also have a good understanding of the tools and techniques in this field. Additionally, I have spent some time learning and utilizing programming languages like Python and PHP.
 
 The site is served in two languages at separate URLs: English under /en/, Persian (فارسی) under /fa/. The root URL (/) redirects visitors to their browser-preferred language.
 
@@ -19,6 +19,18 @@ SEO & Marketing: Google Search Console, Google Analytics, Google Ads, Google Tre
 Development: WordPress, HTML, CSS, Git, Ubuntu.
 Design & Motion: Photoshop, Illustrator, After Effects, Premiere, Corel, Figma, Maya.
 Programming: Python, Arduino C++.
+
+## Latest posts (English)
+
+- [Keyword Research Beyond Search Volume: A Practical Framework](https://feris.ir/en/blog/keyword-research-practical-framework/): Search volume tells you how many people type something into Google. It doesn't tell you whether ranking for it will earn you a single customer.
+- [How to Speed Up a WordPress Site Without Breaking It](https://feris.ir/en/blog/speed-up-wordpress-without-breaking-it/): The fastest way to make a WordPress site faster is also the fastest way to break it. Here's the order that actually works.
+- [5 Technical SEO Issues That Quietly Kill WordPress Rankings](https://feris.ir/en/blog/technical-seo-issues-wordpress/): WordPress makes it easy to publish and just as easy to accumulate crawl and indexing problems nobody notices until traffic drops.
+
+## آخرین پست‌ها (فارسی)
+
+- [تحقیق کلمات کلیدی فراتر از حجم جست‌وجو: یه چارچوب عملی](https://feris.ir/fa/blog/keyword-research-practical-framework/): حجم جست‌وجو فقط می‌گه چندنفر یه چیزی رو تو گوگل تایپ می‌کنن. نمی‌گه رتبه‌گرفتن براش حتی یه مشتری برات میاره یا نه.
+- [چطور سایت وردپرسی رو سریع کنیم بدون اینکه چیزی خراب بشه](https://feris.ir/fa/blog/speed-up-wordpress-without-breaking-it/): سریع‌ترین راه برای سریع‌کردن وردپرس، همون سریع‌ترین راه برای خراب‌کردنشه. این ترتیبیه که واقعاً جواب می‌ده.
+- [۵ مشکل سئوی فنی که بی‌سروصدا رتبه‌ی سایت وردپرسی رو نابود می‌کنن](https://feris.ir/fa/blog/technical-seo-issues-wordpress/): وردپرس نوشتن مطلب رو راحت می‌کنه، ولی همون‌قدر هم راحت می‌ذاره مشکلات ایندکس و خزش بدون اینکه کسی متوجه بشه جمع بشن.
 
 ## Contact
 
