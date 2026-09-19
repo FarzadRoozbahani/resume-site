@@ -593,9 +593,10 @@ def load_posts(lang):
             raw = f.read()
         fm, body = parse_frontmatter(raw)
         body_html, toc = markdown_to_html(body)
-        # default cover image: one hand-drawn SVG per slug, shared across languages
-        # (assets/blog/<slug>.svg); a post can override with an explicit `image:` field
-        default_image = "/assets/blog/{}.svg".format(slug)
+        # default cover image: one real (CC0-licensed) photo per slug, shared
+        # across languages (assets/blog/<slug>.jpg); a post can override with
+        # an explicit `image:` field
+        default_image = "/assets/blog/{}.jpg".format(slug)
         image_path = fm.get("image", default_image)
         has_image = fm.get("image") is not None or os.path.isfile(os.path.join(ROOT, default_image.lstrip("/")))
         posts.append({
