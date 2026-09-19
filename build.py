@@ -30,6 +30,22 @@ from datetime import date
 ROOT = os.path.dirname(os.path.abspath(__file__))
 SITE_URL = "https://feris.ir"
 
+MATOMO_SNIPPET = """<!-- Matomo -->
+<script>
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//analytics.harimtech.com/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '3']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->"""
+
 # ---------------------------------------------------------------- parsing --
 
 def parse_sections(text):
@@ -458,6 +474,7 @@ def page_shell(lang, title, description, canonical_path, body, extra_head="", na
 {font_link}
 {extra_head}
 <style>{css}</style>
+{matomo}
 </head>
 <body>
 <div class="aurora" aria-hidden="true"><span></span><span></span><span></span></div>
@@ -474,6 +491,7 @@ def page_shell(lang, title, description, canonical_path, body, extra_head="", na
         extra_head=extra_head, css=CSS, name="Farzad Roozbahani", nav=nav_html, body=body,
         og_image=(og_image if og_image else "{}/assets/farzad.png".format(SITE_URL)),
         og_image_w=("1200" if og_image else "675"), og_image_h=("630" if og_image else "1200"),
+        matomo=MATOMO_SNIPPET,
     )
 
 
@@ -765,6 +783,7 @@ def render_root_redirect():
   var target = lang.indexOf('fa') === 0 ? '/fa/' : '/en/';
   location.replace(target);
 </script>
+{matomo}
 </head>
 <body>
   <noscript>
@@ -773,7 +792,7 @@ def render_root_redirect():
   </noscript>
   <p style="display:none">Redirecting… <a href="/en/">English</a> · <a href="/fa/">فارسی</a></p>
 </body>
-</html>""".format(site=SITE_URL)
+</html>""".format(site=SITE_URL, matomo=MATOMO_SNIPPET)
 
 
 # -------------------------------------------------------------- sitemap --
