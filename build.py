@@ -406,6 +406,8 @@ STRINGS = {
         "toc": "Table of contents",
         "written_by": "Written by",
         "more_posts": "More posts",
+        "latest_posts": "Latest posts",
+        "view_all_posts": "View all posts →",
     },
     "fa": {
         "about": "درباره من", "experience": "سوابق کاری", "skills": "مهارت‌ها",
@@ -417,6 +419,8 @@ STRINGS = {
         "toc": "فهرست محتوا",
         "written_by": "نویسنده:",
         "more_posts": "پست‌های دیگر",
+        "latest_posts": "آخرین پست‌های بلاگ",
+        "view_all_posts": "دیدن همه‌ی پست‌ها ←",
     },
 }
 
@@ -542,7 +546,7 @@ def build_person_schema(lang, sections, hero):
     return json.dumps(schema, indent=2, ensure_ascii=False)
 
 
-def render_resume(lang, sections):
+def render_resume(lang, sections, posts=None):
     s = STRINGS[lang]
     hero, _ = parse_key_values(sections.get("hero", ""))
 
@@ -604,7 +608,15 @@ def render_resume(lang, sections):
         body.append('<span class="interest glass-light">{}<span>{}</span></span>'.format(icon_for_interest(name), html.escape(name)))
     body.append('</div></section>')
 
-    body.append('<section id="contact"><div class="section-head"><span class="num">08</span><h2>{}</h2></div><div class="contact-grid">'.format(s["contact"]))
+    latest = (posts or [])[:3]
+    if latest:
+        body.append('<section id="blog"><div class="section-head"><span class="num">08</span><h2>{}</h2></div><div class="post-list">'.format(s["latest_posts"]))
+        for p in latest:
+            body.append(render_post_row(lang, p))
+        body.append('</div><a class="back-link" href="/{}/blog/" style="margin-top:14px">{}</a></section>'.format(lang, s["view_all_posts"]))
+
+    body.append('<section id="contact"><div class="section-head"><span class="num">{}</span><h2>{}</h2></div><div class="contact-grid">'.format(
+        "09" if latest else "08", s["contact"]))
     contact_kv, contact_labels = parse_key_values(sections.get("contact", ""))
     for key, value in contact_kv.items():
         icon_key, is_email = icon_for_contact_label(contact_labels[key])
@@ -832,9 +844,6 @@ def main():
             sections = parse_sections(f.read())
         hero, _ = parse_key_values(sections.get("hero", ""))
 
-        write("{}/index.html".format(lang), render_resume(lang, sections))
-        sitemap_urls.append({"loc": "{}/{}/".format(SITE_URL, lang), "lastmod": today, "changefreq": "monthly", "priority": "1.0"})
-
         # wipe the previous blog output before regenerating: build.py only ever
         # writes files, so a post removed from content/ would otherwise leave its
         # old /lang/blog/<slug>/ page live and orphaned (dead but still online).
@@ -843,6 +852,10 @@ def main():
             shutil.rmtree(blog_dir)
 
         posts = load_posts(lang)
+
+        write("{}/index.html".format(lang), render_resume(lang, sections, posts))
+        sitemap_urls.append({"loc": "{}/{}/".format(SITE_URL, lang), "lastmod": today, "changefreq": "monthly", "priority": "1.0"})
+
         write("{}/blog/index.html".format(lang), render_blog_index(lang, posts, hero.get("name", "")))
         sitemap_urls.append({"loc": "{}/{}/blog/".format(SITE_URL, lang), "lastmod": today, "changefreq": "weekly", "priority": "0.8"})
 
