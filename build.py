@@ -794,11 +794,8 @@ def render_root_redirect():
         display:flex; align-items:center; justify-content:center; text-align:center; }}
   a{{ color:#22D3EE; text-decoration:none; margin: 0 10px; font-weight:600; }}
 </style>
-<script>
-  var lang = (navigator.language || navigator.userLanguage || 'en').toLowerCase();
-  var target = lang.indexOf('fa') === 0 ? '/fa/' : '/en/';
-  location.replace(target);
-</script>
+<meta http-equiv="refresh" content="0; url=/en/">
+<script>location.replace('/en/');</script>
 {matomo}
 </head>
 <body>
