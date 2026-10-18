@@ -783,11 +783,8 @@ def render_root_redirect():
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Farzad Roozbahani</title>
-<link rel="canonical" href="{site}/">
-<link rel="alternate" hreflang="en" href="{site}/en/">
-<link rel="alternate" hreflang="fa" href="{site}/fa/">
-<link rel="alternate" hreflang="x-default" href="{site}/">
-<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="{site}/en/">
+<meta name="robots" content="index, follow">
 <link rel="icon" type="image/png" sizes="48x48" href="/assets/favicon-48.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16.png">
@@ -895,7 +892,7 @@ def write(path, content):
 
 def main():
     today = date.today().isoformat()
-    sitemap_urls = [{"loc": SITE_URL + "/", "lastmod": today, "changefreq": "yearly", "priority": "0.5"}]
+    sitemap_urls = []
     posts_by_lang = {}
     en_sections, en_hero = None, None
 
