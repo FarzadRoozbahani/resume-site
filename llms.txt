@@ -4,13 +4,13 @@
 
 In recent years, I have developed an interest in the world of digital marketing, especially in the field of SEO. I started studying and learning about SEO from various sources, and gradually launched my first successful SEO project. Having previously worked in graphic design and motion, I also have a good understanding of the tools and techniques in this field. Additionally, I have spent some time learning and utilizing programming languages like Python and PHP.
 
-The site is served in two languages at separate URLs: English under /en/, Persian (فارسی) under /fa/. The root URL (/) redirects visitors to their browser-preferred language.
+The site is served in two languages at separate URLs: English at the domain root (/), Persian (فارسی) under /fa/.
 
 ## Pages
 
-- [English resume](https://feris.ir/en/): Full profile — about, work experience, skills, soft skills, education, languages, interests, and contact details.
+- [English resume](https://feris.ir/): Full profile — about, work experience, skills, soft skills, education, languages, interests, and contact details.
 - [Persian resume](https://feris.ir/fa/): همان محتوا به فارسی.
-- [English blog](https://feris.ir/en/blog/): Articles and notes.
+- [English blog](https://feris.ir/blog/): Articles and notes.
 - [Persian blog](https://feris.ir/fa/blog/): مقالات و یادداشت‌ها به فارسی.
 
 ## Skills
@@ -22,9 +22,9 @@ Programming: Python, Arduino C++.
 
 ## Latest posts (English)
 
-- [Keyword Research Beyond Search Volume: A Practical Framework](https://feris.ir/en/blog/keyword-research-practical-framework/): Search volume tells you how many people type something into Google. It doesn't tell you whether ranking for it will earn you a single customer.
-- [How to Speed Up a WordPress Site Without Breaking It](https://feris.ir/en/blog/speed-up-wordpress-without-breaking-it/): The fastest way to make a WordPress site faster is also the fastest way to break it. Here's the order that actually works.
-- [5 Technical SEO Issues That Quietly Kill WordPress Rankings](https://feris.ir/en/blog/technical-seo-issues-wordpress/): WordPress makes it easy to publish and just as easy to accumulate crawl and indexing problems nobody notices until traffic drops.
+- [Keyword Research Beyond Search Volume: A Practical Framework](https://feris.ir/blog/keyword-research-practical-framework/): Search volume tells you how many people type something into Google. It doesn't tell you whether ranking for it will earn you a single customer.
+- [How to Speed Up a WordPress Site Without Breaking It](https://feris.ir/blog/speed-up-wordpress-without-breaking-it/): The fastest way to make a WordPress site faster is also the fastest way to break it. Here's the order that actually works.
+- [5 Technical SEO Issues That Quietly Kill WordPress Rankings](https://feris.ir/blog/technical-seo-issues-wordpress/): WordPress makes it easy to publish and just as easy to accumulate crawl and indexing problems nobody notices until traffic drops.
 
 ## آخرین پست‌ها (فارسی)
 

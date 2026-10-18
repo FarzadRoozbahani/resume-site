@@ -7,13 +7,13 @@ Reads:
   content/en/blog/*.md, content/fa/blog/*.md -> blog posts (frontmatter + markdown body)
 
 Writes (directly into the repo root, which is what GitHub Pages serves):
-  /index.html            -> language redirect (browser-language based)
-  /en/index.html         -> English resume
+  /index.html            -> English resume (English lives at the domain root)
   /fa/index.html         -> Persian resume
-  /en/blog/index.html    -> English blog listing
+  /blog/index.html       -> English blog listing
   /fa/blog/index.html    -> Persian blog listing
-  /en/blog/<slug>/index.html  -> one per English post
+  /blog/<slug>/index.html     -> one per English post
   /fa/blog/<slug>/index.html  -> one per Persian post
+  /en/...                -> tiny redirect stubs to the root URLs (old links)
   /sitemap.xml           -> every URL above
 
 Run this after editing anything under content/, then commit + push.
@@ -427,17 +427,24 @@ STRINGS = {
 OTHER_LANG = {"en": "fa", "fa": "en"}
 
 
+def lp(lang):
+    """URL prefix for a language: English is served from the domain root,
+    Persian from /fa."""
+    return "" if lang == "en" else "/fa"
+
+
 def page_shell(lang, title, description, canonical_path, body, extra_head="", nav_active="resume", og_image=None):
     other = OTHER_LANG[lang]
     dir_attr = "rtl" if lang == "fa" else "ltr"
     s = STRINGS[lang]
     canonical = SITE_URL + canonical_path
-    alt_en = SITE_URL + ("/en/" if canonical_path.startswith("/en") else "/en" + canonical_path[3:] if canonical_path.startswith("/fa") else "/en/")
-    alt_fa = SITE_URL + ("/fa/" if canonical_path.startswith("/fa") else "/fa" + canonical_path[3:] if canonical_path.startswith("/en") else "/fa/")
+    en_path = canonical_path[3:] if canonical_path.startswith("/fa/") else canonical_path
+    alt_en = SITE_URL + en_path
+    alt_fa = SITE_URL + "/fa" + en_path
 
-    nav_html = '<nav class="glass-light"><a href="/{o}/" title="{label}">{code}</a><a href="/{l}/blog/" class="{blogcls}">{blog}</a></nav>'.format(
-        o=other, label=("English" if other == "en" else "فارسی"), code=other.upper(),
-        l=lang, blogcls=("active" if nav_active == "blog" else ""), blog=s["blog_nav"]
+    nav_html = '<nav class="glass-light"><a href="{o}/" title="{label}">{code}</a><a href="{l}/blog/" class="{blogcls}">{blog}</a></nav>'.format(
+        o=lp(other), label=("English" if other == "en" else "فارسی"), code=other.upper(),
+        l=lp(lang), blogcls=("active" if nav_active == "blog" else ""), blog=s["blog_nav"]
     )
 
     return """<!DOCTYPE html>
@@ -452,7 +459,7 @@ def page_shell(lang, title, description, canonical_path, body, extra_head="", na
 <link rel="canonical" href="{canonical}">
 <link rel="alternate" hreflang="en" href="{alt_en}">
 <link rel="alternate" hreflang="fa" href="{alt_fa}">
-<link rel="alternate" hreflang="x-default" href="{site}/">
+<link rel="alternate" hreflang="x-default" href="{alt_en}">
 <link rel="sitemap" type="application/xml" href="/sitemap.xml">
 
 <meta property="og:type" content="website">
@@ -486,13 +493,13 @@ def page_shell(lang, title, description, canonical_path, body, extra_head="", na
 <body>
 <div class="aurora" aria-hidden="true"><span></span><span></span><span></span></div>
 <div class="topbar">
-  <a href="/{lang}/" class="brand glass-light">{name}</a>
+  <a href="{home}/" class="brand glass-light">{name}</a>
   {nav}
 </div>
 {body}
 </body>
 </html>""".format(
-        lang=lang, dir_attr=dir_attr, title=html.escape(title), description=html.escape(description),
+        lang=lang, home=lp(lang), dir_attr=dir_attr, title=html.escape(title), description=html.escape(description),
         canonical=canonical, alt_en=alt_en, alt_fa=alt_fa, site=SITE_URL,
         locale=("fa_IR" if lang == "fa" else "en_US"), font_link=FONT_LINK[lang],
         extra_head=extra_head, css=CSS, name="Farzad Roozbahani", nav=nav_html, body=body,
@@ -531,7 +538,7 @@ def build_person_schema(lang, sections, hero):
         "name": hero.get("name", ""),
         "jobTitle": hero.get("eyebrow", ""),
         "description": sections.get("about", "").strip(),
-        "url": "{}/{}/".format(SITE_URL, lang),
+        "url": "{}{}/".format(SITE_URL, lp(lang)),
         "image": "{}/assets/farzad.png".format(SITE_URL),
         "email": "mailto:" + hero["email"] if hero.get("email") else None,
         "address": {"@type": "PostalAddress", "addressLocality": locality, "addressCountry": "IR"} if locality else None,
@@ -539,7 +546,7 @@ def build_person_schema(lang, sections, hero):
         "alumniOf": {"@type": "EducationalOrganization", "name": alumni} if alumni else None,
         "knowsLanguage": ["fa", "en"],
         "knowsAbout": knows_about or None,
-        "sameAs": ["{}/{}/".format(SITE_URL, lang)],
+        "sameAs": ["{}{}/".format(SITE_URL, lp(lang))],
     }
     schema = {k: v for k, v in schema.items() if v is not None}
     import json
@@ -613,7 +620,7 @@ def render_resume(lang, sections, posts=None):
         body.append('<section id="blog"><div class="section-head"><span class="num">08</span><h2>{}</h2></div><div class="post-list">'.format(s["latest_posts"]))
         for p in latest:
             body.append(render_post_row(lang, p))
-        body.append('</div><a class="back-link" href="/{}/blog/" style="margin-top:14px">{}</a></section>'.format(lang, s["view_all_posts"]))
+        body.append('</div><a class="back-link" href="{}/blog/" style="margin-top:14px">{}</a></section>'.format(lp(lang), s["view_all_posts"]))
 
     body.append('<section id="contact"><div class="section-head"><span class="num">{}</span><h2>{}</h2></div><div class="contact-grid">'.format(
         "09" if latest else "08", s["contact"]))
@@ -634,7 +641,7 @@ def render_resume(lang, sections, posts=None):
     extra_head = '<script type="application/ld+json">\n{}\n</script>'.format(schema_json)
 
     title = "{} | {}".format(hero.get("name", ""), hero.get("eyebrow", ""))
-    return page_shell(lang, title, STRINGS[lang]["site_desc"], "/{}/".format(lang), "\n".join(body), extra_head, nav_active="resume")
+    return page_shell(lang, title, STRINGS[lang]["site_desc"], "{}/".format(lp(lang)), "\n".join(body), extra_head, nav_active="resume")
 
 
 # --------------------------------------------------------------------- blog --
@@ -672,14 +679,14 @@ def render_post_row(lang, p):
         thumb = '<img class="post-thumb" src="{src}" alt="{alt}" width="128" height="128" loading="lazy">'.format(
             src=p["image"], alt=html.escape(p["title"]))
     return (
-        '<a class="post-row" href="/{lang}/blog/{slug}/">'
+        '<a class="post-row" href="{prefix}/blog/{slug}/">'
         '{thumb}'
         '<div class="post-main">'
         '<h3>{title}</h3>'
         '<div class="post-date">{date}</div>'
         '<p class="excerpt">{excerpt}</p>'
         '</div></a>'.format(
-            lang=lang, slug=p["slug"], thumb=thumb, date=html.escape(p["date"]),
+            prefix=lp(lang), slug=p["slug"], thumb=thumb, date=html.escape(p["date"]),
             title=html.escape(p["title"]), excerpt=html.escape(p["excerpt"]))
     )
 
@@ -700,7 +707,7 @@ def render_blog_index(lang, posts, hero_name):
     body.append('</section></main>')
 
     title = s["blog_index_title"].format(name=hero_name)
-    return page_shell(lang, title, s["site_desc"], "/{}/blog/".format(lang), "\n".join(body), nav_active="blog")
+    return page_shell(lang, title, s["site_desc"], "{}/blog/".format(lp(lang)), "\n".join(body), nav_active="blog")
 
 
 def build_article_schema(lang, post, hero_name, canonical_url):
@@ -713,7 +720,7 @@ def build_article_schema(lang, post, hero_name, canonical_url):
         "datePublished": post["date"],
         "dateModified": post["date"],
         "inLanguage": lang,
-        "author": {"@type": "Person", "name": hero_name, "url": "{}/{}/".format(SITE_URL, lang)},
+        "author": {"@type": "Person", "name": hero_name, "url": "{}{}/".format(SITE_URL, lp(lang))},
         "publisher": {"@type": "Person", "name": hero_name},
         "mainEntityOfPage": {"@type": "WebPage", "@id": canonical_url},
     }
@@ -733,8 +740,8 @@ def render_toc(toc, s):
 
 def render_blog_post(lang, post, hero_name, hero_eyebrow="", all_posts=None):
     s = STRINGS[lang]
-    byline = '<div class="byline">{label} <a href="/{lang}/">{name}</a>{sep}{eyebrow}</div>'.format(
-        label=s["written_by"], lang=lang, name=html.escape(hero_name),
+    byline = '<div class="byline">{label} <a href="{home}/">{name}</a>{sep}{eyebrow}</div>'.format(
+        label=s["written_by"], home=lp(lang), name=html.escape(hero_name),
         sep=" — " if hero_eyebrow else "", eyebrow=html.escape(hero_eyebrow))
     cover = ""
     if post.get("image"):
@@ -745,7 +752,7 @@ def render_blog_post(lang, post, hero_name, hero_eyebrow="", all_posts=None):
     body = [
         '<main class="wrap">',
         '<section style="padding-top:26px">',
-        '<a class="back-link" href="/{}/blog/">{}</a>'.format(lang, s["back_to_blog"]),
+        '<a class="back-link" href="{}/blog/">{}</a>'.format(lp(lang), s["back_to_blog"]),
         '<article class="post glass">',
         '<div class="post-date">{}</div>'.format(html.escape(post["date"])),
         '<h1>{}</h1>'.format(html.escape(post["title"])),
@@ -767,7 +774,7 @@ def render_blog_post(lang, post, hero_name, hero_eyebrow="", all_posts=None):
     # the 50-60 char guideline on their own, and appending the brand name
     # would push most of them well past it.
     title = post["title"]
-    canonical = "/{}/blog/{}/".format(lang, post["slug"])
+    canonical = "{}/blog/{}/".format(lp(lang), post["slug"])
     og_image = SITE_URL + post["image"] if post.get("image") else None
     schema_json = build_article_schema(lang, post, hero_name, SITE_URL + canonical)
     extra_head = '<script type="application/ld+json">\n{}\n</script>'.format(schema_json)
@@ -776,36 +783,24 @@ def render_blog_post(lang, post, hero_name, hero_eyebrow="", all_posts=None):
 
 # --------------------------------------------------------------- redirect --
 
-def render_root_redirect():
+def render_legacy_redirect(new_path):
+    """Tiny stub for the old /en/... URLs (GitHub Pages can't send a 301).
+    Points search engines at the new canonical URL and sends visitors there."""
     return """<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Farzad Roozbahani</title>
-<link rel="canonical" href="{site}/en/">
-<meta name="robots" content="index, follow">
-<link rel="icon" type="image/png" sizes="48x48" href="/assets/favicon-48.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16.png">
-<link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
-<style>
-  body{{ background:#070A12; color:#F3F6FB; font-family: -apple-system, sans-serif; min-height:100vh;
-        display:flex; align-items:center; justify-content:center; text-align:center; }}
-  a{{ color:#22D3EE; text-decoration:none; margin: 0 10px; font-weight:600; }}
-</style>
-<meta http-equiv="refresh" content="0; url=/en/">
-<script>location.replace('/en/');</script>
-{matomo}
+<link rel="canonical" href="{site}{path}">
+<meta http-equiv="refresh" content="0; url={path}">
+<meta name="robots" content="noindex, follow">
+<script>location.replace('{path}');</script>
 </head>
 <body>
-  <noscript>
-    <p>Choose your language / زبان خود را انتخاب کنید:</p>
-    <p><a href="/en/">English</a> · <a href="/fa/">فارسی</a></p>
-  </noscript>
-  <p style="display:none">Redirecting… <a href="/en/">English</a> · <a href="/fa/">فارسی</a></p>
+  <p>Moved to <a href="{path}">{site}{path}</a></p>
 </body>
-</html>""".format(site=SITE_URL, matomo=MATOMO_SNIPPET)
+</html>""".format(site=SITE_URL, path=new_path)
 
 
 # ----------------------------------------------------------------- llms --
@@ -827,16 +822,15 @@ def build_llms_txt(en_sections, en_hero, posts_by_lang):
     lines.append("")
     lines.append(en_sections.get("about", "").strip())
     lines.append("")
-    lines.append("The site is served in two languages at separate URLs: English under /en/, "
-                 "Persian (فارسی) under /fa/. The root URL (/) redirects visitors to their "
-                 "browser-preferred language.")
+    lines.append("The site is served in two languages at separate URLs: English at the "
+                 "domain root (/), Persian (فارسی) under /fa/.")
     lines.append("")
     lines.append("## Pages")
     lines.append("")
-    lines.append("- [English resume]({0}/en/): Full profile — about, work experience, skills, "
+    lines.append("- [English resume]({0}/): Full profile — about, work experience, skills, "
                  "soft skills, education, languages, interests, and contact details.".format(SITE_URL))
     lines.append("- [Persian resume]({0}/fa/): همان محتوا به فارسی.".format(SITE_URL))
-    lines.append("- [English blog]({0}/en/blog/): Articles and notes.".format(SITE_URL))
+    lines.append("- [English blog]({0}/blog/): Articles and notes.".format(SITE_URL))
     lines.append("- [Persian blog]({0}/fa/blog/): مقالات و یادداشت‌ها به فارسی.".format(SITE_URL))
     lines.append("")
     lines.append("## Skills")
@@ -853,7 +847,7 @@ def build_llms_txt(en_sections, en_hero, posts_by_lang):
         lines.append("")
         for p in posts:
             lines.append("- [{title}]({url}): {excerpt}".format(
-                title=p["title"], url="{}/{}/blog/{}/".format(SITE_URL, lang, p["slug"]), excerpt=p["excerpt"]))
+                title=p["title"], url="{}{}/blog/{}/".format(SITE_URL, lp(lang), p["slug"]), excerpt=p["excerpt"]))
         lines.append("")
 
     lines.append("## Contact")
@@ -880,7 +874,7 @@ def build_sitemap(urls):
 # ----------------------------------------------------------------- main --
 
 def write(path, content):
-    full = os.path.join(ROOT, path)
+    full = os.path.join(ROOT, path.lstrip("/"))
     os.makedirs(os.path.dirname(full), exist_ok=True)
     with open(full, "w", encoding="utf-8") as f:
         f.write(content)
@@ -901,7 +895,7 @@ def main():
         # wipe the previous blog output before regenerating: build.py only ever
         # writes files, so a post removed from content/ would otherwise leave its
         # old /lang/blog/<slug>/ page live and orphaned (dead but still online).
-        blog_dir = os.path.join(ROOT, lang, "blog")
+        blog_dir = os.path.join(ROOT, lp(lang).lstrip("/"), "blog")
         if os.path.isdir(blog_dir):
             shutil.rmtree(blog_dir)
 
@@ -910,17 +904,24 @@ def main():
         if lang == "en":
             en_sections, en_hero = sections, hero
 
-        write("{}/index.html".format(lang), render_resume(lang, sections, posts))
-        sitemap_urls.append({"loc": "{}/{}/".format(SITE_URL, lang), "lastmod": today, "changefreq": "monthly", "priority": "1.0"})
+        write("{}/index.html".format(lp(lang)), render_resume(lang, sections, posts))
+        sitemap_urls.append({"loc": "{}{}/".format(SITE_URL, lp(lang)), "lastmod": today, "changefreq": "monthly", "priority": "1.0"})
 
-        write("{}/blog/index.html".format(lang), render_blog_index(lang, posts, hero.get("name", "")))
-        sitemap_urls.append({"loc": "{}/{}/blog/".format(SITE_URL, lang), "lastmod": today, "changefreq": "weekly", "priority": "0.8"})
+        write("{}/blog/index.html".format(lp(lang)), render_blog_index(lang, posts, hero.get("name", "")))
+        sitemap_urls.append({"loc": "{}{}/blog/".format(SITE_URL, lp(lang)), "lastmod": today, "changefreq": "weekly", "priority": "0.8"})
 
         for post in posts:
-            write("{}/blog/{}/index.html".format(lang, post["slug"]), render_blog_post(lang, post, hero.get("name", ""), hero.get("eyebrow", ""), all_posts=posts))
-            sitemap_urls.append({"loc": "{}/{}/blog/{}/".format(SITE_URL, lang, post["slug"]), "lastmod": post["date"] or today, "changefreq": "monthly", "priority": "0.6"})
+            write("{}/blog/{}/index.html".format(lp(lang), post["slug"]), render_blog_post(lang, post, hero.get("name", ""), hero.get("eyebrow", ""), all_posts=posts))
+            sitemap_urls.append({"loc": "{}{}/blog/{}/".format(SITE_URL, lp(lang), post["slug"]), "lastmod": post["date"] or today, "changefreq": "monthly", "priority": "0.6"})
 
-    write("index.html", render_root_redirect())
+    # old /en/... URLs -> small redirect stubs pointing at the root URLs
+    legacy = os.path.join(ROOT, "en")
+    if os.path.isdir(legacy):
+        shutil.rmtree(legacy)
+    write("en/index.html", render_legacy_redirect("/"))
+    write("en/blog/index.html", render_legacy_redirect("/blog/"))
+    for post in posts_by_lang["en"]:
+        write("en/blog/{}/index.html".format(post["slug"]), render_legacy_redirect("/blog/{}/".format(post["slug"])))
     write("sitemap.xml", build_sitemap(sitemap_urls))
     write("llms.txt", build_llms_txt(en_sections, en_hero, posts_by_lang))
 
